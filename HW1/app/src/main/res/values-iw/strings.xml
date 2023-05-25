@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">החנות של דאלפסי</string>
+    <string name="welcome_page_shop_now_button">התחל רכישה</string>
+    <string name="welcome_page_background_img_desc">התמונה ממחישה בגדים של החנות בגדים</string>
+    <string name="main_activity_headline">הקולקציה שלנו</string>
+    <string name="main_activity_shirts_section">חולצות</string>
+    <string name="main_activity_old_navy_shirt">"חולצה אדום בורדו "</string>
+    <string name="main_activity_blue_shirt">חולצה כחולה</string>
+    <string name="main_activity_gray_shirt">חולצה אפורה</string>
+    <string name="main_activity_pants_section">מכנסיים</string>
+    <string name="main_activity_blue_jeans">גינס כחול</string>
+    <string name="main_activity_black_pants">מכנס שחור</string>
+    <string name="main_activity_gray_pants">מכנס אפור</string>
+    <string name="main_activity_accessories_section">אביזרים</string>
+    <string name="main_activity_backpack">תיק גב</string>
+    <string name="main_activity_hat">כובע מגניב</string>
+    <string name="main_activity_sunglasses">משקפי שמש</string>
+    <string name="main_activity_go_to_cart_button">עבור לעגלת הקניות</string>
+    <string name="activity_purchase_accept_headline">אשר רכישה</string>
+    <string name="activity_purchase_accept_button">רכוש</string>
+    <string name="activity_purchase_go_back_button">חזור אחורה</string>
+    <string name="activity_shopping_cart_headline">עגלת הקניות שלך</string>
+    <string name="dialog_of_item_quantity">כמות :</string>
+    <string name="dialog_of_item_minus_button">-</string>
+    <string name="dialog_of_item_plus_button">+</string>
+    <string name="dialog_of_item_add_to_cart_button">הוסף לעגלה</string>
+    <string name="dialog_of_item_go_back_button">חזור אחורה</string>
+    <string name="dialog_of_item_initial_quantity">1</string>
+    <string name="activity_purchase_remove_button">מחק מהעגלה</string>
+    <string name="activity_purchase_update_button">עדכן כמות</string>
+    <string name="activity_shopping_cart_price">"מחיר : "</string>
+    <string name="activity_shopping_cart_purchase_now_button">רכוש עכשיו</string>
+    <string name="activity_shopping_cart_total">"סה״כ : "</string>
+    <string name="activity_shopping_cart_amount_to_pay">"סה״כ לתשלום : "</string>
+    <string name="activity_thank_you_for_purchase_str">תודה לך על הרכישה</string>
+    <string name="dialog_of_item_picture">תמונה זו מציגה את הפריט שנלחץ</string>
+</resources>

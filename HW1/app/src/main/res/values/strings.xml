@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Dalfasi Shop</string>
+    <!-- Strings for the Welcome Page   -->
+        <string name="welcome_page_shop_now_button">Shop Now</string>
+        <string name="welcome_page_background_img_desc">This image represents the background of the app</string>
+    
+    <!-- Strings for the MainActivity Page    -->
+        <string name="main_activity_headline">Our Merchandise</string>
+
+        <string name="main_activity_shirts_section">T-Shirts</string>
+
+        <string name="main_activity_old_navy_shirt">Old-Navy shirt</string>
+        <string name="main_activity_blue_shirt">Blue shirt</string>
+        <string name="main_activity_gray_shirt">Gray shirt</string>
+
+
+        <string name="main_activity_pants_section">Pants</string>
+
+        <string name="main_activity_blue_jeans">Blue jeans</string>
+        <string name="main_activity_black_pants">Black pants</string>
+        <string name="main_activity_gray_pants">Gray pants</string>
+
+        <string name="main_activity_accessories_section">Accessories</string>
+
+        <string name="main_activity_backpack">Backpack</string>
+        <string name="main_activity_hat">Hat</string>
+        <string name="main_activity_sunglasses">Sunglasses</string>
+
+        <string name="main_activity_go_to_cart_button">Go to cart</string>
+
+    <!-- Strings for the Purchase Dialog Page    -->
+        <string name="activity_purchase_accept_headline">Accept and Purchase</string>
+        <string name="activity_purchase_accept_button">Purchase</string>
+        <string name="activity_purchase_go_back_button">Go Back</string>
+        <string name="activity_purchase_update_button">Update</string>
+        <string name="activity_purchase_remove_button">Remove</string>
+
+    <!-- Strings for the Shopping Cart Page    -->
+        <string name="activity_shopping_cart_headline">Your Shopping Cart</string>
+        <string name="activity_shopping_cart_price">Price : </string>
+        <string name="activity_shopping_cart_purchase_now_button">Purchase Now</string>
+        <string name="activity_shopping_cart_total">Total of : </string>
+        <string name="activity_shopping_cart_amount_to_pay">Amount to pay </string>
+
+    <!-- Strings for the dialog layout   -->
+        <string name="dialog_of_item_quantity">Quantity : </string>
+        <string name="dialog_of_item_picture">A picture representing the selected item</string>
+        <string name="dialog_of_item_initial_quantity">1</string>
+        <string name="dialog_of_item_minus_button">-</string>
+        <string name="dialog_of_item_plus_button">+</string>
+        <string name="dialog_of_item_add_to_cart_button">Add to cart</string>
+        <string name="dialog_of_item_go_back_button">Go Back</string>
+
+    <!-- String for thank you layout   -->
+        <string name="activity_thank_you_for_purchase_str">Thank you for your purchase</string>
+
+
+
+
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/allItemsFragment"
+        android:name="com.example.archtectureproject.ui.allchores.AllChoresFragment"
+        android:label="all_items_fragment"
+        tools:layout="@layout/all_chores_fragment" >
+        <action
+            android:id="@+id/action_allItemsFragment_to_HomeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment"
+            app:destination="@id/detailedItemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.archtectureproject.ui.addchore.AddChoreFragment"
+        android:label="add_item_layout"
+        tools:layout="@layout/add_chore_layout" >
+        <action
+            android:id="@+id/action_addItemFragment_to_HomeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/allItemsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedItemFragment"
+        android:name="com.example.archtectureproject.ui.detailedchore.DetailedChoreFragment"
+        android:label="detail_item_layout"
+        tools:layout="@layout/detailed_chore_layout" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.archtectureproject.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment" />
+    </fragment>
+</navigation>

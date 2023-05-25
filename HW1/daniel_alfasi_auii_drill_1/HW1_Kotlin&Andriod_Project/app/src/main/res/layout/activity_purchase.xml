@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/activity_purchase_accept_headline"
+        android:paddingBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/dialog_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:padding="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/dialog_accept_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_purchase_accept_button"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:id="@+id/dialog_decline_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_purchase_go_back_button"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
