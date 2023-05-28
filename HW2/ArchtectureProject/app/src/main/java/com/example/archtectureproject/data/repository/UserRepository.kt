@@ -24,7 +24,7 @@ class UserRepository(application: Application) {
         userDao?.addUser(user)
     }
 
-    fun deleteChore(user: User) {
+    fun deleteUser(user: User) {
         userDao?.deleteUser(user)
     }
 

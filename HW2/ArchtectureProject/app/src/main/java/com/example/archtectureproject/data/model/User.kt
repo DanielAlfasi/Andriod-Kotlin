@@ -15,7 +15,7 @@ data class User(
     val lastName:String,
 
     @ColumnInfo(name = "family_id")
-    val familyId: Int = -1)
+    val familyId: Int = 1)
 
 {
     @PrimaryKey(autoGenerate = true)
