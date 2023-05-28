@@ -21,13 +21,14 @@ data class Chore(
     @ColumnInfo(name = "due_date")
     val date: Int,
 
-    @ColumnInfo(name = "user_id")
+    @ColumnInfo(name = "user_in_charge_id")
     val userId: Int = -1,
+
+    @ColumnInfo(name = "family_id")
+    val familyId: Int = -1,
 
     @ColumnInfo(name = "status")
     val status: Boolean = false)
-
-
 
 {
     @PrimaryKey(autoGenerate = true)

@@ -8,25 +8,26 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.archtectureproject.data.model.Chore
+import com.example.archtectureproject.data.model.User
 
 @Dao
-interface ChoreDao {
+interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addChore(chore: Chore)
+    fun addUser(user: User)
 
     @Delete
-    fun deleteChore(vararg chore: Chore)
+    fun deleteUser(vararg user: User)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateChore(chore: Chore)
+    fun updateUser(user: User)
 
-    @Query("SELECT * from chores_table ORDER BY due_date ASC")
-    fun getChores() : LiveData<List<Chore>>
+    @Query("SELECT * from users_table where family_id = :familyId")
+    fun getFamily(familyId: Int) : LiveData<List<User>>
 
-    @Query("SELECT * from chores_table WHERE id = :choreId")
-    fun getChore(choreId: Int) : Chore
+    @Query("SELECT * from users_table WHERE id = :userId")
+    fun getUser(userId: Int) : User
 
-    @Query("DELETE from chores_table")
+    @Query("DELETE from users_table")
     fun deleteAll()
 }
