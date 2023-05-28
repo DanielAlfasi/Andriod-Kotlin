@@ -29,7 +29,7 @@ class AddChoreFragment : Fragment() {
         _binding = AddChoreLayoutBinding.inflate(inflater,container,false)
 
         binding.finishBtn.setOnClickListener {
-            val chore = Chore(binding.choreTitle.text.toString(), binding.choreDescription.text.toString(), binding.choreReward.text.toString().toInt(), binding.choreDueDate.toString().toInt())
+            val chore = Chore(binding.choreTitle.text.toString(), binding.choreDescription.text.toString(), binding.choreReward.text.toString().toInt(), binding.choreDueDate.text.toString().toInt())
 
             viewModel.addChore(chore)
 
