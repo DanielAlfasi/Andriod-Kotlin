@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.archtectureproject.data.model.Chore
 
-@Database(entities = arrayOf(Chore::class), version = 1, exportSchema = false)
+@Database(entities = [Chore::class], version = 1, exportSchema = false)
 abstract class ChoresDatabase : RoomDatabase(){
 
     abstract fun choreDao() : ChoreDao
