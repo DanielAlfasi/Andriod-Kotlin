@@ -19,6 +19,8 @@ import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.repository.UserRepository
 import com.example.archtectureproject.ui.UserViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailedChoreFragment : Fragment() {
 
@@ -49,7 +51,12 @@ class DetailedChoreFragment : Fragment() {
             binding.choreTitle.text = it.title
             binding.choreDescription.text = it.description
             binding.choreReward.text = "${getString(R.string.reward_title).toString()} ${it.reward.toString()}"
-            binding.choreDueDate.text = "${getString(R.string.due_title).toString()} ${it.date.toString()}"
+
+            // handle Date
+            val date = Date(it.date)
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateString = dateFormat.format(date)
+            binding.choreDueDate.text = "${getString(R.string.due_title).toString()} $dateString"
 
             if (it.userId == -1) {
                 binding.assignedTo.text = getString(R.string.not_assigned).toString()

@@ -19,7 +19,7 @@ data class Chore(
 
     // Change to Date type
     @ColumnInfo(name = "due_date")
-    val date: Int,
+    val date: Long,
 
     @ColumnInfo(name = "user_in_charge_id")
     val userId: Int = -1,
