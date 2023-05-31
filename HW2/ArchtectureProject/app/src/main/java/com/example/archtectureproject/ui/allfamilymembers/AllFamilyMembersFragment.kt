@@ -12,11 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.R
-import com.example.archtectureproject.data.model.User
-import com.example.archtectureproject.databinding.AllChoresFragmentBinding
 import com.example.archtectureproject.databinding.AllFamilyMembersFragmentBinding
+import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.ui.UserViewModel
 
 class AllFamilyMembersFragment : Fragment() {
@@ -24,7 +22,8 @@ class AllFamilyMembersFragment : Fragment() {
     private var _binding:AllFamilyMembersFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : UserViewModel by activityViewModels()
+    private val userViewModel : UserViewModel by activityViewModels()
+    private val choreViewModel : ChoreViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +58,7 @@ class AllFamilyMembersFragment : Fragment() {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.action_delete -> {
-                        viewModel.deleteAll()
+                        userViewModel.deleteAll()
                         true
                     }
                     else -> false
@@ -67,20 +66,20 @@ class AllFamilyMembersFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        viewModel.users?.observe(viewLifecycleOwner) {
+        userViewModel.users?.observe(viewLifecycleOwner) {
 
-            binding.recycler.adapter = UserAdapter(it, object : UserAdapter.UserListener {
+            binding.recycler.adapter = UserAdapter(it, choreViewModel ,object : UserAdapter.UserListener {
                 override fun onUserClicked(index: Int) {
                     Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_LONG).show()
                 }
 
                 override fun onUserLongClick(index: Int) {
-                    viewModel.setUser(it[index])
+                    userViewModel.setUser(it[index])
                     findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
             })
         }
-        binding.recycler.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.recycler.layoutManager = GridLayoutManager(requireContext(),1)
 
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
@@ -99,7 +98,7 @@ class AllFamilyMembersFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.deleteUser((binding.recycler.adapter as UserAdapter)
+                userViewModel.deleteUser((binding.recycler.adapter as UserAdapter)
                     .userAt(viewHolder.adapterPosition))
                 binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
             }

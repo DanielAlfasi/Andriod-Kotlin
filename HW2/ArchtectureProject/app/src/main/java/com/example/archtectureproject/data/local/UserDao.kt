@@ -7,7 +7,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 
 @Dao

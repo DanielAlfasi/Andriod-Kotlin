@@ -27,6 +27,9 @@ interface ChoreDao {
     @Query("SELECT * from chores_table WHERE id = :choreId")
     fun getChore(choreId: Int) : Chore
 
+    @Query("SELECT COUNT(*) FROM chores_table WHERE user_in_charge_id = :userId")
+    fun countUserChores(userId: Int): Int
+
     @Query("DELETE from chores_table")
     fun deleteAll()
 }

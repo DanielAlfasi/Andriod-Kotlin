@@ -18,8 +18,14 @@ class ChoreViewModel(application: Application)
     private val _chosenChore = MutableLiveData<Chore>()
     val chosenChore : LiveData<Chore> get() = _chosenChore
 
+
     fun setChore(chore: Chore) {
         _chosenChore.value = chore
+    }
+
+    fun countUserChores(userId: Int) : Int?
+    {
+        return repository.countUserChores(userId)
     }
 
     fun addChore(chore: Chore) {
