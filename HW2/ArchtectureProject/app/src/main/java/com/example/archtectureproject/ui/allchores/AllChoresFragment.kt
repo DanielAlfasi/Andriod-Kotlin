@@ -78,7 +78,7 @@ class AllChoresFragment : Fragment() {
                 }
             })
         }
-        binding.recycler.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.recycler.layoutManager = GridLayoutManager(requireContext(),1)
 
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {

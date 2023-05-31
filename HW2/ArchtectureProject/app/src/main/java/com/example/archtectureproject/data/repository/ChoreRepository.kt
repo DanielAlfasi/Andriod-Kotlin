@@ -27,4 +27,9 @@ class ChoreRepository(application: Application) {
     fun deleteAll() {
         choreDao?.deleteAll()
     }
+
+    fun countUserChores(userId: Int) : Int?
+    {
+        return choreDao?.countUserChores(userId)
+    }
 }

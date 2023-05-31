@@ -28,18 +28,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="First name"
+                android:text="Name"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:id="@+id/user_firstname"/>
+                android:id="@+id/user_name"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            >
 
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last name"
+                android:text="Chores"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:id="@+id/user_lastname"/>
+                android:id="@+id/user_chores"/>
 
             <TextView
                 android:layout_width="match_parent"
