@@ -32,4 +32,12 @@ class ChoreRepository(application: Application) {
     {
         return choreDao?.countUserChores(userId)
     }
+
+    fun updateUserCharge(choreId: Int, userId: Int) {
+        choreDao?.updateUserCharge(choreId, userId)
+    }
+
+    fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
+        choreDao?.updateChoreCompleted(choreId, status)
+    }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -47,6 +48,7 @@ class DetailedChoreFragment : Fragment() {
 
         userRepository = UserRepository(requireActivity().application)
 
+
         choreViewModel.chosenChore.observe(viewLifecycleOwner) {
             binding.choreTitle.text = it.title
             binding.choreDescription.text = it.description
@@ -69,6 +71,7 @@ class DetailedChoreFragment : Fragment() {
             val allUsers = userViewModel.users
 
             allUsers?.observe(viewLifecycleOwner, Observer { userList ->
+                allUsers.value
                 val userNames = userList.map { "${it.firstName} ${it.lastName}" }
                 val arrayAdapter = ArrayAdapter(
                     requireContext(),
@@ -77,9 +80,36 @@ class DetailedChoreFragment : Fragment() {
                 )
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 userSpinner.adapter = arrayAdapter
+                binding.applyUserChange.setOnClickListener {
+                    handleUserPick(allUsers.value)
+                }
             })
+
+            binding.completeButton.setOnClickListener {
+                completeChore()
+            }
         }
 
         }
+
+    fun handleUserPick(userList: List<User>?) {
+        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUser = userList!![position]
+                choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUser.id)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+    }
+
+    fun completeChore() {
+        binding.completeButton.text = getString(R.string.chore_completed)
+        binding.completeButton.isEnabled = false
+        choreViewModel.updateChoreCompleted(choreViewModel.chosenChore.value!!.id)
+
+    }
 
     }

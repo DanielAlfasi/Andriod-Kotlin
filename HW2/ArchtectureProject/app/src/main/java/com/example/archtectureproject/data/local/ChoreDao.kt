@@ -30,6 +30,12 @@ interface ChoreDao {
     @Query("SELECT COUNT(*) FROM chores_table WHERE user_in_charge_id = :userId")
     fun countUserChores(userId: Int): Int
 
+    @Query("UPDATE chores_table SET user_in_charge_id = :userId WHERE id = :choreId")
+    fun updateUserCharge(choreId: Int, userId: Int)
+
+    @Query("UPDATE chores_table SET status = :status WHERE id = :choreId")
+    fun updateChoreCompleted(choreId: Int, status: Boolean = true)
+
     @Query("DELETE from chores_table")
     fun deleteAll()
 }

@@ -6,6 +6,9 @@
     <string name="spinner_chooser_title">Assign this chore to </string>
     <string name="reward_title">Reward:</string>
     <string name="due_title">Due on</string>
+    <string name="complete_chore_title">Mark as completed</string>
+    <string name="user_change_title">Apply change</string>
+    <string name="chore_completed">Chore completed</string>
 
 <!--    add chore fragment-->
     <string name="pick_date_title">Pick due date</string>

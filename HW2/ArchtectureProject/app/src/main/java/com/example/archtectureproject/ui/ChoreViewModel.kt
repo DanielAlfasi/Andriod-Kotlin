@@ -40,4 +40,13 @@ class ChoreViewModel(application: Application)
         repository.deleteAll()
     }
 
+    fun updateUserCharge(choreId: Int, userId: Int) {
+        repository.updateUserCharge(choreId, userId)
+    }
+
+    fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
+        repository.updateChoreCompleted(choreId, status)
+    }
+
+
 }
