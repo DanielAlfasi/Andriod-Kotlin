@@ -30,6 +30,9 @@ interface ChoreDao {
     @Query("SELECT COUNT(*) FROM chores_table WHERE user_in_charge_id = :userId")
     fun countUserChores(userId: Int): Int
 
+    @Query("SELECT SUM(reward) FROM chores_table WHERE user_in_charge_id = :userId AND status = :status")
+    fun sumUserChoresRewards(userId: Int, status : Boolean): Int
+
     @Query("DELETE from chores_table")
     fun deleteAll()
 }
