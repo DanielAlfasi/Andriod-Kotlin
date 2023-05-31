@@ -55,5 +55,34 @@
         <action
             android:id="@+id/action_homeFragment_to_allItemsFragment"
             app:destination="@id/allItemsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allFamilyMembersFragment"
+            app:destination="@id/allFamilyMembersFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/allFamilyMembersFragment"
+        android:name="com.example.archtectureproject.ui.allfamilymembers.AllFamilyMembersFragment"
+        android:label="all_family_members_fragment"
+        tools:layout="@layout/all_family_members_fragment" >
+        <action
+            android:id="@+id/action_allFamilyMembersFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="com.example.archtectureproject.ui.adduser.AddUserFragment"
+        android:label="add_user_layout"
+        tools:layout="@layout/add_user_layout" >
+        <action
+            android:id="@+id/action_addUserFragment_to_allFamilyMembersFragment"
+            app:destination="@id/allFamilyMembersFragment" />
     </fragment>
 </navigation>

@@ -47,9 +47,15 @@ class HomeFragment : Fragment() {
 
         }
 
+        binding.familyMembersButton.setOnClickListener {
+
+            findNavController().navigate(R.id.action_homeFragment_to_allFamilyMembersFragment)
+
+        }
+
+
         return binding.root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
