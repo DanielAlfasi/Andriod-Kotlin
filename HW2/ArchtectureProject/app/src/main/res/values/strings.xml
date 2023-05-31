@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ArchtectureProject</string>
+
+<!--    detailed chore fragment-->
+    <string name="not_assigned">Chore isn\'t assigned yet</string>
+    <string name="spinner_chooser_title">Assign this chore to </string>
+    <string name="reward_title">Reward:</string>
+    <string name="due_title">Due at</string>
 </resources>
