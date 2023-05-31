@@ -44,7 +44,7 @@ class UserAdapter(val users:List<User> , private val choreViewModel: ChoreViewMo
         fun bind(user: User) {
             binding.userName.text = "${user.firstName} ${user.lastName}"
             binding.userChores.text = "Chores : ${choreViewModel.countUserChores(user.id)}"
-            binding.userNumOfCoins.text = "To be implemented"
+            binding.userNumOfCoins.text = "Coins : ${choreViewModel.sumUserChoresRewards(user.id, true)}"
         }
     }
 

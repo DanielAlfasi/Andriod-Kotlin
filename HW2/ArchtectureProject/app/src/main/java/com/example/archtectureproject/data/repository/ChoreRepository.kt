@@ -28,6 +28,11 @@ class ChoreRepository(application: Application) {
         choreDao?.deleteAll()
     }
 
+    fun sumUserChoresRewards(userId: Int, status: Boolean) : Int?
+    {
+        return choreDao?.sumUserChoresRewards(userId, status)
+    }
+
     fun countUserChores(userId: Int) : Int?
     {
         return choreDao?.countUserChores(userId)

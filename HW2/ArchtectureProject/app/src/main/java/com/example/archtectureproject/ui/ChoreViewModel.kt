@@ -28,6 +28,11 @@ class ChoreViewModel(application: Application)
         return repository.countUserChores(userId)
     }
 
+    fun sumUserChoresRewards(userId: Int, status : Boolean) : Int?
+    {
+        return repository.sumUserChoresRewards(userId, status)
+    }
+
     fun addChore(chore: Chore) {
         repository.addChore(chore)
     }
