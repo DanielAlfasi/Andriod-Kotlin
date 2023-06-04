@@ -92,7 +92,7 @@ class DetailedChoreFragment : Fragment() {
 
         }
 
-    fun handleUserPick(userList: List<User>?) {
+    private fun handleUserPick(userList: List<User>?) {
         userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedUser = userList!![position]
@@ -105,7 +105,7 @@ class DetailedChoreFragment : Fragment() {
         }
     }
 
-    fun completeChore() {
+    private fun completeChore() {
         binding.completeButton.text = getString(R.string.chore_completed)
         binding.completeButton.isEnabled = false
         choreViewModel.updateChoreCompleted(choreViewModel.chosenChore.value!!.id)

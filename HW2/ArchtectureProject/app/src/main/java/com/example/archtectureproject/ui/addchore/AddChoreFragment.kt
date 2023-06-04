@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +16,11 @@ import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.R
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.databinding.AddChoreLayoutBinding
+import com.example.archtectureproject.ui.UserViewModel
 import java.util.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import com.example.archtectureproject.data.model.User
 
 class AddChoreFragment : Fragment() {
 
@@ -22,6 +29,8 @@ class AddChoreFragment : Fragment() {
     private var _binding : AddChoreLayoutBinding?  = null
     private val binding get() = _binding!!
     private var date: Long = 0
+    private val userViewModel : UserViewModel by activityViewModels()
+    private lateinit var userSpinner: Spinner
 
 
     override fun onCreateView(
@@ -63,6 +72,30 @@ class AddChoreFragment : Fragment() {
 
         }
 
+        userSpinner =  binding.userPickSpinner
+
+        val allUsers = userViewModel.users
+
+        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
+            allUsers.value
+            val userNames = userList.map { "${it.firstName} ${it.lastName}" }
+            val arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                userNames
+            )
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            userSpinner.adapter = arrayAdapter
+
+        })
+
+        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUser = allUsers!![position]
+                val userPicked = selectedUser
+            }
+
+
         binding.finishBtn.setOnClickListener {
             val chore = Chore(binding.choreTitle.text.toString(), binding.choreDescription.text.toString(), binding.choreReward.text.toString().toInt(), date)
 
@@ -82,5 +115,18 @@ class AddChoreFragment : Fragment() {
 
     fun dateBtnClicked() {
         binding.pickDateBtn
+    }
+
+    private fun handleUserPick(userList: List<User>?) {
+        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUser = userList!![position]
+                return selectedUser.id
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
     }
 }
