@@ -71,29 +71,29 @@ class AddChoreFragment : Fragment() {
             datePickerDialog.show()
 
         }
-
-        userSpinner =  binding.userPickSpinner
-
-        val allUsers = userViewModel.users
-
-        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
-            allUsers.value
-            val userNames = userList.map { "${it.firstName} ${it.lastName}" }
-            val arrayAdapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                userNames
-            )
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            userSpinner.adapter = arrayAdapter
-
-        })
-
-        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedUser = allUsers!![position]
-                val userPicked = selectedUser
-            }
+//
+//        userSpinner =  binding.userPickSpinner
+//
+//        val allUsers = userViewModel.users
+//
+//        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
+//            allUsers.value
+//            val userNames = userList.map { "${it.firstName} ${it.lastName}" }
+//            val arrayAdapter = ArrayAdapter(
+//                requireContext(),
+//                android.R.layout.simple_spinner_item,
+//                userNames
+//            )
+//            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            userSpinner.adapter = arrayAdapter
+//
+//        })
+//
+//        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val selectedUser = allUsers!![position]
+//                val userPicked = selectedUser
+//            }
 
 
         binding.finishBtn.setOnClickListener {
@@ -117,16 +117,16 @@ class AddChoreFragment : Fragment() {
         binding.pickDateBtn
     }
 
-    private fun handleUserPick(userList: List<User>?) {
-        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedUser = userList!![position]
-                return selectedUser.id
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
-            }
-        }
-    }
+//    private fun handleUserPick(userList: List<User>?) {
+//        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                val selectedUser = userList!![position]
+//                return selectedUser.id
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//                // Do nothing
+//            }
+//        }
+//    }
 }

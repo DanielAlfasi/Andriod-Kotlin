@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">ArchtectureProject</string>
+    <string name="app_name">ChoresManager</string>
+
+<!--    all chores fragment-->
+    <string name="chore_title">Chore title</string>
 
 <!--    detailed chore fragment-->
     <string name="not_assigned">Chore isn\'t assigned yet</string>

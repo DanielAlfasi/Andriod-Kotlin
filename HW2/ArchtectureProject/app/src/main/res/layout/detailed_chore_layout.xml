@@ -6,17 +6,20 @@
     android:padding="30dp"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.detailedchore.DetailedChoreFragment"
-    android:background="#cacb">
+    android:background="@android:color/holo_blue_light">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="#C1E8FF">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
@@ -25,7 +28,8 @@
                 android:gravity="center"
                 android:textSize="30sp"
                 android:layout_margin="10dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:layout_width="match_parent"

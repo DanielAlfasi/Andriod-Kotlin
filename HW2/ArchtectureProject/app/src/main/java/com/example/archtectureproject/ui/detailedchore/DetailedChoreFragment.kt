@@ -30,6 +30,7 @@ class DetailedChoreFragment : Fragment() {
     private val userViewModel : UserViewModel by activityViewModels()
     private lateinit var userRepository: UserRepository
     private lateinit var userSpinner: Spinner
+    private var selectedUserId = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +61,7 @@ class DetailedChoreFragment : Fragment() {
             val dateString = dateFormat.format(date)
             binding.choreDueDate.text = "${getString(R.string.due_title).toString()} $dateString"
 
+            // handle user assigned to chore
             if (it.userId == -1) {
                 binding.assignedTo.text = getString(R.string.not_assigned).toString()
             }
@@ -80,10 +82,17 @@ class DetailedChoreFragment : Fragment() {
                 )
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 userSpinner.adapter = arrayAdapter
+                handleUserPick(allUsers.value)
                 binding.applyUserChange.setOnClickListener {
-                    handleUserPick(allUsers.value)
+                    completeUserPick()
                 }
             })
+
+            // handle chore completion
+            if (choreViewModel.chosenChore.value?.status!!) {
+                binding.completeButton.text = getString(R.string.chore_completed)
+                binding.completeButton.isEnabled = false
+            }
 
             binding.completeButton.setOnClickListener {
                 completeChore()
@@ -96,13 +105,19 @@ class DetailedChoreFragment : Fragment() {
         userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedUser = userList!![position]
-                choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUser.id)
+                selectedUserId = selectedUser.id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Do nothing
             }
         }
+    }
+
+    private fun completeUserPick(){
+        choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
+        val user = userRepository.getUser(selectedUserId)
+        binding.assignedTo.text = "${user?.firstName ?: ""} ${user?.lastName ?: ""}"
     }
 
     private fun completeChore() {

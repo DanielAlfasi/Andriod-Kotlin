@@ -1,11 +1,15 @@
 package com.example.archtectureproject.ui.allchores
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.archtectureproject.R
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.databinding.ChoreLayoutBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ChoreAdapter(val chores:List<Chore>, private val callback: ChoreListener) : RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder>() {
@@ -32,11 +36,14 @@ class ChoreAdapter(val chores:List<Chore>, private val callback: ChoreListener) 
             return true
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(chore: Chore) {
             binding.choreTitle.text = chore.title
-            binding.choreDescription.text = chore.description
-            binding.choreReward.text = chore.reward.toString()
-            binding.choreDueDate.text = chore.date.toString()
+            // handle Date
+            val date = Date(chore.date)
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateString = dateFormat.format(date)
+            binding.choreDueDate.text = "${binding.choreDueDate.text} $dateString"
         }
     }
 
