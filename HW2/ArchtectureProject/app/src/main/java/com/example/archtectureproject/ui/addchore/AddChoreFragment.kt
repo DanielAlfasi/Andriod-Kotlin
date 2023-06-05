@@ -41,38 +41,9 @@ class AddChoreFragment : Fragment() {
     ): View? {
         _binding = AddChoreLayoutBinding.inflate(inflater, container, false)
 
+        // handle date pick
         binding.pickDateBtn.setOnClickListener {
-            val calendar = Calendar.getInstance()
-
-            val datePickerDialog = DatePickerDialog(
-                requireContext(),
-                { _, year, monthOfYear, dayOfMonth ->
-                    // Create a Calendar object with the picked date
-                    val pickedDate = Calendar.getInstance().apply {
-                        set(year, monthOfYear, dayOfMonth)
-                    }
-
-                    // Convert the picked date to a Date object
-                    date = pickedDate.timeInMillis
-                    pickedDate.set(Calendar.HOUR_OF_DAY, 0)
-                    pickedDate.set(Calendar.MINUTE, 0)
-                    pickedDate.set(Calendar.SECOND, 0)
-                    pickedDate.set(Calendar.MILLISECOND, 0)
-
-                    // show the picked date on screen
-                    val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
-                    binding.dateText.text = selectedDate
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
-
-            // set the minimum date to current date
-            datePickerDialog.datePicker.minDate = calendar.timeInMillis
-
-            datePickerDialog.show()
-
+            dateBtnClicked()
         }
 //
 //        userSpinner =  binding.userPickSpinner
@@ -106,11 +77,8 @@ class AddChoreFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
+    // handle finish button function
     private fun finishBtnClicked() {
 
         if (date == 0L) {
@@ -151,8 +119,42 @@ class AddChoreFragment : Fragment() {
 
     }
 
-
+    // handle date pick button
     fun dateBtnClicked() {
-        binding.pickDateBtn
+        val calendar = Calendar.getInstance()
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, monthOfYear, dayOfMonth ->
+                // Create a Calendar object with the picked date
+                val pickedDate = Calendar.getInstance().apply {
+                    set(year, monthOfYear, dayOfMonth)
+                }
+
+                // Convert the picked date to a Date object
+                date = pickedDate.timeInMillis
+                pickedDate.set(Calendar.HOUR_OF_DAY, 0)
+                pickedDate.set(Calendar.MINUTE, 0)
+                pickedDate.set(Calendar.SECOND, 0)
+                pickedDate.set(Calendar.MILLISECOND, 0)
+
+                // show the picked date on screen
+                val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                binding.dateText.text = selectedDate
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        // set the minimum date to current date
+        datePickerDialog.datePicker.minDate = calendar.timeInMillis
+
+        datePickerDialog.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
