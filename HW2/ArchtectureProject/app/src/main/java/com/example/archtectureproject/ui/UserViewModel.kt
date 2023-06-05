@@ -4,10 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.repository.ChoreRepository
 import com.example.archtectureproject.data.repository.UserRepository
+import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application)
     : AndroidViewModel(application) {
@@ -25,15 +27,36 @@ class UserViewModel(application: Application)
     }
 
     fun addUser(user: User) {
-        repository.addUser(user)
+        viewModelScope.launch {
+            repository.addUser(user)
+        }
+    }
+
+    fun getUser(userId:Int) : User
+    {
+        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
+        users?.value?.let { userList ->
+            for (user in userList)
+            {
+                if (user.id == userId)
+                {
+                    userToReturn = user
+                }
+            }
+        }
+        return userToReturn
     }
 
     fun deleteUser(user: User) {
-        repository.deleteUser(user)
+        viewModelScope.launch {
+            repository.deleteUser(user)
+        }
     }
 
     fun deleteAll() {
-        repository.deleteAll()
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
     }
 
 }

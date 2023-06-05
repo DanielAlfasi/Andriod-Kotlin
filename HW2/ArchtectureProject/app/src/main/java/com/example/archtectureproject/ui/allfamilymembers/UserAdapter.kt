@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.repository.ChoreRepository
@@ -45,6 +46,7 @@ class UserAdapter(val users:List<User> , private val choreViewModel: ChoreViewMo
             binding.userName.text = "${user.firstName} ${user.lastName}"
             binding.userChores.text = "Chores : ${choreViewModel.countUserChores(user.id)}"
             binding.userNumOfCoins.text = "Coins : ${choreViewModel.sumUserChoresRewards(user.id, true)}"
+            Glide.with(binding.root).load(user.profileImg).circleCrop().into(binding.itemImage)
         }
     }
 

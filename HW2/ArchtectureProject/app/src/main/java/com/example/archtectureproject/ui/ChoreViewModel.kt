@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.repository.ChoreRepository
+import kotlinx.coroutines.launch
 
 class ChoreViewModel(application: Application)
     : AndroidViewModel(application) {
@@ -23,34 +25,61 @@ class ChoreViewModel(application: Application)
         _chosenChore.value = chore
     }
 
-    fun countUserChores(userId: Int) : Int?
-    {
-        return repository.countUserChores(userId)
+    fun countUserChores(userId: Int) : Int {
+        var userChores = 0
+        chores?.value?.let { choresList ->
+            for (chore in choresList) {
+                if (chore.userId == userId) {
+                    userChores += 1
+                }
+            }
+        }
+        return userChores
     }
 
-    fun sumUserChoresRewards(userId: Int, status : Boolean) : Int?
-    {
-        return repository.sumUserChoresRewards(userId, status)
+    fun sumUserChoresRewards(userId: Int, status : Boolean) : Int {
+        var totalReward = 0
+        chores?.value?.let { choresList ->
+            for (chore in choresList)
+            {
+                if (chore.userId == userId && chore.status)
+                {
+                    totalReward += chore.reward
+                }
+            }
+        }
+        return totalReward
     }
+
 
     fun addChore(chore: Chore) {
-        repository.addChore(chore)
+        viewModelScope.launch {
+            repository.addChore(chore)
+        }
     }
 
     fun deleteChore(chore: Chore) {
-        repository.deleteChore(chore)
+        viewModelScope.launch {
+            repository.deleteChore(chore)
+        }
     }
 
     fun deleteAll() {
-        repository.deleteAll()
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
     }
 
     fun updateUserCharge(choreId: Int, userId: Int) {
-        repository.updateUserCharge(choreId, userId)
+        viewModelScope.launch {
+            repository.updateUserCharge(choreId, userId)
+        }
     }
 
     fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
-        repository.updateChoreCompleted(choreId, status)
+        viewModelScope.launch {
+            repository.updateChoreCompleted(choreId, status)
+        }
     }
 
 

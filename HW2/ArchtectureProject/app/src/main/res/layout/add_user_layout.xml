@@ -37,6 +37,22 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Pick Image"
+        android:id="@+id/image_btn"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:id="@+id/result_image"
+        android:src="@mipmap/ic_launcher"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Add family member"
         android:id="@+id/finish_btn"
         android:layout_gravity="center"

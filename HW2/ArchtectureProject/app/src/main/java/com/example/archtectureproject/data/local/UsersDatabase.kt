@@ -18,8 +18,7 @@ abstract class UsersDatabase : RoomDatabase(){
 
         fun getDatabase(context: Context) = instance ?: synchronized(UsersDatabase::class.java) {
             Room.databaseBuilder(context.applicationContext,
-                UsersDatabase::class.java,"users_database")
-                .allowMainThreadQueries().build().also { instance = it }
+                UsersDatabase::class.java,"users_database").build().also { instance = it }
         }
     }
 }

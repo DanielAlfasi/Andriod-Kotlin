@@ -16,33 +16,23 @@ class ChoreRepository(application: Application) {
 
     fun getChores() = choreDao?.getChores()
 
-    fun addChore(chore: Chore) {
+    suspend fun addChore(chore: Chore) {
         choreDao?.addChore(chore)
     }
 
-    fun deleteChore(chore: Chore) {
+    suspend fun deleteChore(chore: Chore) {
         choreDao?.deleteChore(chore)
     }
 
-    fun deleteAll() {
+    suspend fun deleteAll() {
         choreDao?.deleteAll()
     }
 
-    fun sumUserChoresRewards(userId: Int, status: Boolean) : Int?
-    {
-        return choreDao?.sumUserChoresRewards(userId, status)
-    }
-
-    fun countUserChores(userId: Int) : Int?
-    {
-        return choreDao?.countUserChores(userId)
-    }
-
-    fun updateUserCharge(choreId: Int, userId: Int) {
+    suspend fun updateUserCharge(choreId: Int, userId: Int) {
         choreDao?.updateUserCharge(choreId, userId)
     }
 
-    fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
+    suspend fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
         choreDao?.updateChoreCompleted(choreId, status)
     }
 }

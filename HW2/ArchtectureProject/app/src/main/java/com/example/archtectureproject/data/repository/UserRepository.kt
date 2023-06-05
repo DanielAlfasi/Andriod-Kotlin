@@ -16,19 +16,19 @@ class UserRepository(application: Application) {
         userDao = db.userDao()
     }
 
-    fun getUser(userId: Int) = userDao?.getUser(userId)
+//    suspend fun getUser(userId: Int) = userDao?.getUser(userId)
 
     fun getFamily(familyId: Int) = userDao?.getFamily(familyId)
 
-    fun addUser(user: User) {
+    suspend fun addUser(user: User) {
         userDao?.addUser(user)
     }
 
-    fun deleteUser(user: User) {
+    suspend fun deleteUser(user: User) {
         userDao?.deleteUser(user)
     }
 
-    fun deleteAll() {
+    suspend fun deleteAll() {
         userDao?.deleteAll()
     }
 }

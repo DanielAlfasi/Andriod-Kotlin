@@ -13,20 +13,20 @@ import com.example.archtectureproject.data.model.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addUser(user: User)
+    suspend fun addUser(user: User)
 
     @Delete
-    fun deleteUser(vararg user: User)
+    suspend fun deleteUser(vararg user: User)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateUser(user: User)
+    suspend fun updateUser(user: User)
 
     @Query("SELECT * from users_table where family_id = :familyId")
     fun getFamily(familyId: Int) : LiveData<List<User>>
 
-    @Query("SELECT * from users_table WHERE id = :userId")
-    fun getUser(userId: Int) : User
+//    @Query("SELECT * from users_table WHERE id = :userId")
+//    suspend fun getUser(userId: Int) : User
 
     @Query("DELETE from users_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

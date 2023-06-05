@@ -48,7 +48,8 @@ class DetailedChoreFragment : Fragment() {
         userSpinner = binding.userSpinner
 
         userRepository = UserRepository(requireActivity().application)
-
+        val allUsers = userViewModel.users
+        val userVM = userViewModel
 
         choreViewModel.chosenChore.observe(viewLifecycleOwner) {
             binding.choreTitle.text = it.title
@@ -66,11 +67,11 @@ class DetailedChoreFragment : Fragment() {
                 binding.assignedTo.text = getString(R.string.not_assigned).toString()
             }
             else {
-                val user = userRepository.getUser(it.userId)
+                val user = userVM.getUser(it.userId)
                 binding.assignedTo.text = "${user?.firstName ?: ""} ${user?.lastName ?: ""}"
             }
 
-            val allUsers = userViewModel.users
+
 
             allUsers?.observe(viewLifecycleOwner, Observer { userList ->
                 allUsers.value
@@ -116,7 +117,7 @@ class DetailedChoreFragment : Fragment() {
 
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
-        val user = userRepository.getUser(selectedUserId)
+        val user = userViewModel.getUser(selectedUserId)
         binding.assignedTo.text = "${user?.firstName ?: ""} ${user?.lastName ?: ""}"
     }
 

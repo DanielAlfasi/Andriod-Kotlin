@@ -15,7 +15,10 @@ data class User(
     val lastName:String,
 
     @ColumnInfo(name = "family_id")
-    val familyId: Int = 1)
+    val familyId: Int = 1,
+
+    @ColumnInfo(name = "profile_image")
+    val profileImg : String?)
 
 {
     @PrimaryKey(autoGenerate = true)

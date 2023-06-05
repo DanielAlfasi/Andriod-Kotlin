@@ -21,8 +21,7 @@ abstract class ChoresDatabase : RoomDatabase(){
 
         fun getDatabase(context: Context) = instance ?: synchronized(ChoresDatabase::class.java) {
             Room.databaseBuilder(context.applicationContext,
-                ChoresDatabase::class.java,"chores_database")
-                .allowMainThreadQueries().build().also { instance = it }
+                ChoresDatabase::class.java,"chores_database").build().also { instance = it }
         }
     }
 }

@@ -13,32 +13,32 @@ import com.example.archtectureproject.data.model.Chore
 interface ChoreDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addChore(chore: Chore)
+    suspend fun addChore(chore: Chore)
 
     @Delete
-    fun deleteChore(vararg chore: Chore)
+    suspend fun deleteChore(vararg chore: Chore)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateChore(chore: Chore)
+    suspend fun updateChore(chore: Chore)
 
     @Query("SELECT * from chores_table ORDER BY due_date ASC")
     fun getChores() : LiveData<List<Chore>>
 
     @Query("SELECT * from chores_table WHERE id = :choreId")
-    fun getChore(choreId: Int) : Chore
+    suspend fun getChore(choreId: Int) : Chore
 
     @Query("SELECT COUNT(*) FROM chores_table WHERE user_in_charge_id = :userId")
-    fun countUserChores(userId: Int): Int
+    suspend fun countUserChores(userId: Int): Int
 
     @Query("UPDATE chores_table SET user_in_charge_id = :userId WHERE id = :choreId")
-    fun updateUserCharge(choreId: Int, userId: Int)
+    suspend fun updateUserCharge(choreId: Int, userId: Int)
 
     @Query("UPDATE chores_table SET status = :status WHERE id = :choreId")
-    fun updateChoreCompleted(choreId: Int, status: Boolean = true)
+    suspend fun updateChoreCompleted(choreId: Int, status: Boolean = true)
 
     @Query("SELECT SUM(reward) FROM chores_table WHERE user_in_charge_id = :userId AND status = :status")
-    fun sumUserChoresRewards(userId: Int, status : Boolean): Int
+    suspend fun sumUserChoresRewards(userId: Int, status : Boolean): Int
 
     @Query("DELETE from chores_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 }
