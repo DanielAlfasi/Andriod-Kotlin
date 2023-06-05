@@ -50,7 +50,7 @@ class AddUserFragment : Fragment() {
 
             viewModel.addUser(user)
 
-            findNavController().navigate(R.id.action_addUserFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_addUserFragment_to_allFamilyMembersFragment)
         }
         binding.imageBtn.setOnClickListener {
             pickItemLauncher.launch(arrayOf("image/*"))

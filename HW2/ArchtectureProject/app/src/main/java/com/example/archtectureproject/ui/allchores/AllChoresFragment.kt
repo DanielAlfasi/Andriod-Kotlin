@@ -35,7 +35,7 @@ class AllChoresFragment : Fragment() {
         }
         binding.flotaingAction.setOnClickListener {
 
-           findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
+           findNavController().navigate(R.id.action_allChoresFragment_to_addChoreFragment)
 
         }
         return binding.root
@@ -50,7 +50,7 @@ class AllChoresFragment : Fragment() {
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.clear() // Clear the menu first
+                //menu.clear() // Clear the menu first
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
@@ -59,20 +59,20 @@ class AllChoresFragment : Fragment() {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.go_to_home -> {
-                        findNavController().navigate(R.id.action_allItemsFragment_to_HomeFragment)
+                        findNavController().navigate(R.id.action_allChoresFragment_to_homeFragment)
                         true
                     }
                     else -> false
                 }
             }
-        })
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         viewModel.chores?.observe(viewLifecycleOwner) {
 
             binding.recycler.adapter = ChoreAdapter(it, object : ChoreAdapter.ChoreListener {
                 override fun onChoreClicked(index: Int) {
                     viewModel.setChore(it[index])
-                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
+                    findNavController().navigate(R.id.action_allChoresFragment_to_detailedChoreFragment)
                 }
 
                 override fun onChoreLongClick(index: Int) {
