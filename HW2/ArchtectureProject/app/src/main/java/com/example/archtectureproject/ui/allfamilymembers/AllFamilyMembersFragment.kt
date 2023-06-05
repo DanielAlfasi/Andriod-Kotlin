@@ -46,10 +46,12 @@ class AllFamilyMembersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // handle menu bar
         val menuHost: MenuHost = requireActivity()
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear() // Clear the menu first
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
@@ -57,14 +59,14 @@ class AllFamilyMembersFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
-                    R.id.action_delete -> {
-                        userViewModel.deleteAll()
+                    R.id.go_to_home -> {
+                        findNavController().navigate(R.id.action_allFamilyMembersFragment_to_homeFragment)
                         true
                     }
                     else -> false
                 }
             }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        })
 
         userViewModel.users?.observe(viewLifecycleOwner) {
 

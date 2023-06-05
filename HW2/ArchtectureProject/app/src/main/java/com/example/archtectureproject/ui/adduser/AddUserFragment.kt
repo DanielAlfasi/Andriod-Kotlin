@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -47,12 +50,37 @@ class AddUserFragment : Fragment() {
 
             viewModel.addUser(user)
 
-            findNavController().navigate(R.id.action_addUserFragment_to_allFamilyMembersFragment)
+            findNavController().navigate(R.id.action_addUserFragment_to_homeFragment)
         }
         binding.imageBtn.setOnClickListener {
             pickItemLauncher.launch(arrayOf("image/*"))
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // handle menu bar
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear() // Clear the menu first
+                // Add menu items here
+                menuInflater.inflate(R.menu.main_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    R.id.go_to_home -> {
+                        findNavController().navigate(R.id.action_addUserFragment_to_homeFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        })
     }
 
 

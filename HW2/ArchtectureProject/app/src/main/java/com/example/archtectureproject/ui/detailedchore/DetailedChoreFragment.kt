@@ -3,16 +3,18 @@ package com.example.archtectureproject.ui.detailedchore
 import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.R
 import com.example.archtectureproject.data.utils.autoCleared
 import com.example.archtectureproject.databinding.DetailedChoreLayoutBinding
@@ -45,6 +47,30 @@ class DetailedChoreFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // ask marko about this!!
+        // handle menu bar
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear() // Clear the menu first
+                // Add menu items here
+                menuInflater.inflate(R.menu.main_menu,menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    R.id.go_to_home -> {
+                        findNavController().navigate(R.id.action_detailedItemFragment_to_homeFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
         userSpinner = binding.userSpinner
 
         userRepository = UserRepository(requireActivity().application)
@@ -93,6 +119,7 @@ class DetailedChoreFragment : Fragment() {
             if (choreViewModel.chosenChore.value?.status!!) {
                 binding.completeButton.text = getString(R.string.chore_completed)
                 binding.completeButton.isEnabled = false
+                binding.applyUserChange.isEnabled = false
             }
 
             binding.completeButton.setOnClickListener {
@@ -125,6 +152,7 @@ class DetailedChoreFragment : Fragment() {
         binding.completeButton.text = getString(R.string.chore_completed)
         binding.completeButton.isEnabled = false
         choreViewModel.updateChoreCompleted(choreViewModel.chosenChore.value!!.id)
+        binding.applyUserChange.isEnabled = false
 
     }
 
