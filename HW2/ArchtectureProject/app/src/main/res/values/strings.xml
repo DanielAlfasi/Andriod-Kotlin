@@ -16,4 +16,8 @@
 <!--    add chore fragment-->
     <string name="pick_date_title">Pick due date</string>
     <string name="no_date_picked">You haven\'t picked date yet</string>
+    <string name="date_not_picked_title">Error</string>
+    <string name="date_not_picked_desc">Due date cannot be empty</string>
+    <string name="date_not_picked_ok">OK</string>
+    <string name="field_not_null_error">This field cannot be empty</string>
 </resources>

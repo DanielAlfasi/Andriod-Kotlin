@@ -35,7 +35,7 @@ class AllChoresFragment : Fragment() {
         }
         binding.flotaingAction.setOnClickListener {
 
-           findNavController().navigate(R.id.action_allItemsFragment_to_HomeFragment)
+           findNavController().navigate(R.id.action_allItemsFragment_to_addItemFragment)
 
         }
         return binding.root
@@ -69,12 +69,12 @@ class AllChoresFragment : Fragment() {
 
             binding.recycler.adapter = ChoreAdapter(it, object : ChoreAdapter.ChoreListener {
                 override fun onChoreClicked(index: Int) {
-                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_LONG).show()
+                    viewModel.setChore(it[index])
+                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
                 }
 
                 override fun onChoreLongClick(index: Int) {
-                    viewModel.setChore(it[index])
-                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
+                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_LONG).show()
                 }
             })
         }

@@ -1,6 +1,7 @@
 package com.example.archtectureproject.ui.addchore
 
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,12 +25,12 @@ import com.example.archtectureproject.data.model.User
 
 class AddChoreFragment : Fragment() {
 
-    private val viewModel : ChoreViewModel by activityViewModels()
+    private val viewModel: ChoreViewModel by activityViewModels()
 
-    private var _binding : AddChoreLayoutBinding?  = null
+    private var _binding: AddChoreLayoutBinding? = null
     private val binding get() = _binding!!
-    private var date: Long = 0
-    private val userViewModel : UserViewModel by activityViewModels()
+    private var date: Long = 0L
+    private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var userSpinner: Spinner
 
 
@@ -38,12 +39,13 @@ class AddChoreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = AddChoreLayoutBinding.inflate(inflater,container,false)
+        _binding = AddChoreLayoutBinding.inflate(inflater, container, false)
 
         binding.pickDateBtn.setOnClickListener {
             val calendar = Calendar.getInstance()
 
-            val datePickerDialog = DatePickerDialog(requireContext(),
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
                 { _, year, monthOfYear, dayOfMonth ->
                     // Create a Calendar object with the picked date
                     val pickedDate = Calendar.getInstance().apply {
@@ -63,7 +65,8 @@ class AddChoreFragment : Fragment() {
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH))
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
 
             // set the minimum date to current date
             datePickerDialog.datePicker.minDate = calendar.timeInMillis
@@ -97,36 +100,59 @@ class AddChoreFragment : Fragment() {
 
 
         binding.finishBtn.setOnClickListener {
-            val chore = Chore(binding.choreTitle.text.toString(), binding.choreDescription.text.toString(), binding.choreReward.text.toString().toInt(), date)
-
-            viewModel.addChore(chore)
-
-            findNavController().navigate(R.id.action_addItemFragment_to_HomeFragment)
+            finishBtnClicked()
         }
 
         return binding.root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    private fun finishBtnClicked() {
+
+        if (date == 0L) {
+            val builder = AlertDialog.Builder(requireContext())
+
+            builder.setTitle(getString(R.string.date_not_picked_title).toString())
+            builder.setMessage(getString(R.string.date_not_picked_desc).toString())
+            builder.setPositiveButton(getString(R.string.date_not_picked_ok).toString()) { dialog, _ ->
+                dialog.dismiss()
+            }
+
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+        }
+        else if (binding.choreTitle.text.isNullOrBlank() and binding.choreReward.text.isNullOrBlank()) {
+            binding.choreTitle.error = getString(R.string.field_not_null_error).toString()
+            binding.choreReward.error = getString(R.string.field_not_null_error).toString()
+        }
+        else if (binding.choreTitle.text.isNullOrBlank()) {
+            binding.choreTitle.error = getString(R.string.field_not_null_error).toString()
+        }
+        else if (binding.choreReward.text.isNullOrBlank()) {
+            binding.choreReward.error = getString(R.string.field_not_null_error).toString()
+        }
+        else {
+            val chore = Chore(
+                binding.choreTitle.text.toString(),
+                binding.choreDescription.text.toString(),
+                binding.choreReward.text.toString().toInt(),
+                date
+            )
+
+            viewModel.addChore(chore)
+
+            findNavController().navigate(R.id.action_addItemFragment_to_HomeFragment)
+        }
+
+    }
+
+
     fun dateBtnClicked() {
         binding.pickDateBtn
     }
-
-//    private fun handleUserPick(userList: List<User>?) {
-//        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val selectedUser = userList!![position]
-//                return selectedUser.id
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                // Do nothing
-//            }
-//        }
-//    }
 }
