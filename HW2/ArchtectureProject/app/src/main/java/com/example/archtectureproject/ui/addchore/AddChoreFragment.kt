@@ -4,12 +4,12 @@ package com.example.archtectureproject.ui.addchore
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -39,6 +39,7 @@ class AddChoreFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = AddChoreLayoutBinding.inflate(inflater, container, false)
 
         // handle date pick
@@ -69,12 +70,38 @@ class AddChoreFragment : Fragment() {
 //                val userPicked = selectedUser
 //            }
 
-
+        // handle finish button
         binding.finishBtn.setOnClickListener {
             finishBtnClicked()
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // handle menu bar
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear() // Clear the menu first
+                // Add menu items here
+                menuInflater.inflate(R.menu.main_menu,menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    R.id.go_to_home -> {
+                        findNavController().navigate(R.id.action_addItemFragment_to_HomeFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        })
+
     }
 
 
@@ -120,7 +147,7 @@ class AddChoreFragment : Fragment() {
     }
 
     // handle date pick button
-    fun dateBtnClicked() {
+    private fun dateBtnClicked() {
         val calendar = Calendar.getInstance()
 
         val datePickerDialog = DatePickerDialog(
