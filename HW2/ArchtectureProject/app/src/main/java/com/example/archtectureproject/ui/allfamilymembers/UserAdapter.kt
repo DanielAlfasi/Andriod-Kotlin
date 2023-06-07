@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.archtectureproject.R
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.model.UserWithChores
@@ -47,7 +48,13 @@ class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserLis
             binding.userName.text = "${userWithChore.user.firstName} ${userWithChore.user.lastName}"
             binding.userChores.text = "Chores : ${userWithChore.choresCount}"
             binding.userNumOfCoins.text = "Coins : ${userWithChore.totalRewards}"
-            Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop().into(binding.itemImage)
+            if (userWithChore.user.profileImg != "null") {
+                Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop()
+                    .into(binding.itemImage)
+            } else {
+                Glide.with(binding.root).load(R.drawable.user_img_final).circleCrop()
+                    .into(binding.itemImage)
+            }
         }
     }
 

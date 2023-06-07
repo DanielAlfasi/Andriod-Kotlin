@@ -18,7 +18,7 @@ data class User(
     val familyId: Int = 1,
 
     @ColumnInfo(name = "profile_image")
-    val profileImg : String?)
+    val profileImg : String? = null)
 
 {
     @PrimaryKey(autoGenerate = true)
