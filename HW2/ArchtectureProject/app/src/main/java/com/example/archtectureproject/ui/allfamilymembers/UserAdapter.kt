@@ -50,7 +50,13 @@ class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserLis
             binding.userName.text = "${userWithChore.user.firstName} ${userWithChore.user.lastName}"
             binding.userChores.text = "${binding.root.context.getString(R.string.number_of_chores_title)} ${userWithChore.choresCount}"
             binding.userNumOfCoins.text = "${binding.root.context.getString(R.string.reward_title)} ${userWithChore.totalRewards}"
-            Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop().into(binding.itemImage)
+            if (userWithChore.user.profileImg != "null") {
+                Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop()
+                    .into(binding.itemImage)
+            } else {
+                Glide.with(binding.root).load(R.drawable.user_img_final).circleCrop()
+                    .into(binding.itemImage)
+            }
         }
     }
 
