@@ -15,11 +15,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.R
+import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.utils.autoCleared
 import com.example.archtectureproject.databinding.DetailedChoreLayoutBinding
 import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.data.model.User
-import com.example.archtectureproject.data.repository.UserRepository
 import com.example.archtectureproject.ui.UserViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,7 +72,6 @@ class DetailedChoreFragment : Fragment() {
         userSpinner = binding.userSpinner
 
         val allUsers = userViewModel.users
-        val userVM = userViewModel
 
         choreViewModel.chosenChore.observe(viewLifecycleOwner) {
             binding.choreTitle.text = it.title
@@ -93,15 +92,17 @@ class DetailedChoreFragment : Fragment() {
             if (it.userId == -1) {
                 binding.assignedTo.text = getString(R.string.not_assigned)
             }
-            else {
-                val user = userVM.getUser(it.userId)
+
+            // Sahar my fix was to add an observer so whenever the chore changes I request the user from the Viewmodel
+            userViewModel.getUserById(it.userId)?.observe(viewLifecycleOwner) { user ->
                 binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
+
             }
 
 
 
-            allUsers?.observe(viewLifecycleOwner, Observer { userList ->
-                allUsers.value
+            userViewModel.users?.observe(viewLifecycleOwner, Observer { userList ->
+
                 val userNames = userList.map { "${it.firstName} ${it.lastName}" }
                 val arrayAdapter = ArrayAdapter(
                     requireContext(),
@@ -110,7 +111,7 @@ class DetailedChoreFragment : Fragment() {
                 )
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 userSpinner.adapter = arrayAdapter
-                handleUserPick(allUsers.value)
+                handleUserPick(userViewModel.users!!.value)
                 binding.applyUserChange.setOnClickListener {
                     completeUserPick()
                 }
@@ -145,8 +146,7 @@ class DetailedChoreFragment : Fragment() {
 
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
-        val user = userViewModel.getUser(selectedUserId)
-        binding.assignedTo.text = "${user.firstName} ${user.lastName}"
+        // i have the userid in selectedUserId so request from viewmodel the details
     }
 
     private fun completeChore() {

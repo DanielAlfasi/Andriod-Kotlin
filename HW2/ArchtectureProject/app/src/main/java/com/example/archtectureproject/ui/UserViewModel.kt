@@ -1,10 +1,7 @@
 package com.example.archtectureproject.ui
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.repository.ChoreRepository
 import com.example.archtectureproject.data.repository.UserRepository
@@ -32,21 +29,33 @@ class UserViewModel(application: Application)
         }
     }
 
-    fun getUser(userId:Int) : User
-    {
-        // ASK ERAN
-        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
-        users?.value?.let { userList ->
-            for (user in userList)
-            {
-                if (user.id == userId)
-                {
-                    userToReturn = user
-                }
+//    fun getUser(userId:Int) : User
+//    {
+//        // ASK ERAN
+//        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
+//        users?.value?.let { userList ->
+//            for (user in userList)
+//            {
+//                if (user.id == userId)
+//                {
+//                    userToReturn = user
+//                }
+//            }
+//        }
+//        return userToReturn
+//    }
+
+    fun getUserById(userId: Int): LiveData<User>? {
+        return users?.let { users ->
+            Transformations.map(users) { userList ->
+                userList.firstOrNull { it.id == userId }
             }
         }
-        return userToReturn
     }
+
+
+
+
 
     fun deleteUser(user: User) {
         viewModelScope.launch {
