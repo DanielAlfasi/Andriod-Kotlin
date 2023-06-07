@@ -50,7 +50,7 @@ class AllFamilyMembersFragment : Fragment() {
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.clear() // Clear the menu first
+                //menu.clear() // Clear the menu first
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
@@ -65,7 +65,7 @@ class AllFamilyMembersFragment : Fragment() {
                     else -> false
                 }
             }
-        })
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         userViewModel.users?.observe(viewLifecycleOwner) {
 
@@ -75,8 +75,7 @@ class AllFamilyMembersFragment : Fragment() {
                 }
 
                 override fun onUserLongClick(index: Int) {
-                    userViewModel.setUser(it[index])
-                    findNavController().navigate(R.id.action_allItemsFragment_to_detailedItemFragment)
+                    // do nothing
                 }
             })
         }

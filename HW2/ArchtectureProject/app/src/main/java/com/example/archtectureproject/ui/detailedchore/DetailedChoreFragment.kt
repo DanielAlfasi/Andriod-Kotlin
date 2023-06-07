@@ -1,7 +1,6 @@
 package com.example.archtectureproject.ui.detailedchore
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
@@ -12,7 +11,6 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.R
@@ -30,7 +28,6 @@ class DetailedChoreFragment : Fragment() {
     private  var binding: DetailedChoreLayoutBinding by autoCleared()
     private val choreViewModel : ChoreViewModel by activityViewModels()
     private val userViewModel : UserViewModel by activityViewModels()
-    private lateinit var userRepository: UserRepository
     private lateinit var userSpinner: Spinner
     private var selectedUserId = -1
 
@@ -54,7 +51,7 @@ class DetailedChoreFragment : Fragment() {
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.clear() // Clear the menu first
+                //menu.clear() // Clear the menu first
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
@@ -63,7 +60,7 @@ class DetailedChoreFragment : Fragment() {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.go_to_home -> {
-                        findNavController().navigate(R.id.action_detailedItemFragment_to_homeFragment)
+                        findNavController().navigate(R.id.action_detailedChoreFragment_to_homeFragment)
                         true
                     }
                     else -> false
@@ -73,7 +70,6 @@ class DetailedChoreFragment : Fragment() {
 
         userSpinner = binding.userSpinner
 
-        userRepository = UserRepository(requireActivity().application)
         val allUsers = userViewModel.users
         val userVM = userViewModel
 

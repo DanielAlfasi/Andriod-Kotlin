@@ -38,13 +38,13 @@ class HomeFragment : Fragment() {
         }
         binding.choresListButton.setOnClickListener {
 
-            findNavController().navigate(R.id.action_homeFragment_to_allItemsFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_allChoresFragment)
 
         }
 
         binding.choresAddButton.setOnClickListener {
 
-            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_addChoreFragment)
 
         }
 

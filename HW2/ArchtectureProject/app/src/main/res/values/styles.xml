@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HeadlineStyle" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:shadowColor">#808080</item>
+        <item name="android:shadowDx">4</item>
+        <item name="android:shadowDy">4</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+</resources>

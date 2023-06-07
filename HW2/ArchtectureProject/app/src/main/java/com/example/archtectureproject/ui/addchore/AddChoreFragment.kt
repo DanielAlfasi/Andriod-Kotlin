@@ -94,7 +94,7 @@ class AddChoreFragment : Fragment() {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.go_to_home -> {
-                        findNavController().navigate(R.id.action_addItemFragment_to_HomeFragment)
+                        findNavController().navigate(R.id.action_addChoreFragment_to_homeFragment)
                         true
                     }
                     else -> false
@@ -141,7 +141,7 @@ class AddChoreFragment : Fragment() {
 
             viewModel.addChore(chore)
 
-            findNavController().navigate(R.id.action_addItemFragment_to_HomeFragment)
+            findNavController().navigate(R.id.action_addChoreFragment_to_homeFragment)
         }
 
     }
