@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
+import com.example.archtectureproject.data.model.UserWithChores
 import com.example.archtectureproject.data.repository.ChoreRepository
 import com.example.archtectureproject.data.repository.UserRepository
 import com.example.archtectureproject.databinding.ChoreLayoutBinding
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class UserAdapter(val users:List<User> , private val choreViewModel: ChoreViewModel ,private val callback: UserListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 // Remove view models and change arg to a list that suits the adapter
     interface UserListener {
         fun onUserClicked(index:Int)
@@ -42,14 +43,13 @@ class UserAdapter(val users:List<User> , private val choreViewModel: ChoreViewMo
             return true
         }
 
-        fun bind(user: User) {
-            binding.userName.text = "${user.firstName} ${user.lastName}"
-            binding.userChores.text = "Chores : ${choreViewModel.countUserChores(user.id)}"
-            binding.userNumOfCoins.text = "Coins : ${choreViewModel.sumUserChoresRewards(user.id, true)}"
-            Glide.with(binding.root).load(user.profileImg).circleCrop().into(binding.itemImage)
+        fun bind(userWithChore: UserWithChores) {
+            binding.userName.text = "${userWithChore.user.firstName} ${userWithChore.user.lastName}"
+            binding.userChores.text = "Chores : ${userWithChore.choresCount}"
+            binding.userNumOfCoins.text = "Coins : ${userWithChore.totalRewards}"
+            Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop().into(binding.itemImage)
         }
     }
-
 
     fun userAt(position: Int) = users[position]
 

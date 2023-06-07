@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.archtectureproject.R
 import com.example.archtectureproject.databinding.AllFamilyMembersFragmentBinding
 import com.example.archtectureproject.ui.ChoreViewModel
+import com.example.archtectureproject.ui.UserAndChoreViewModel
 import com.example.archtectureproject.ui.UserViewModel
 
 class AllFamilyMembersFragment : Fragment() {
@@ -24,6 +25,7 @@ class AllFamilyMembersFragment : Fragment() {
 
     private val userViewModel : UserViewModel by activityViewModels()
     private val choreViewModel : ChoreViewModel by activityViewModels()
+    private val userAndChoreViewModel : UserAndChoreViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,9 +69,9 @@ class AllFamilyMembersFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        userViewModel.users?.observe(viewLifecycleOwner) {
+        userAndChoreViewModel.userWithChores?.observe(viewLifecycleOwner) {
 
-            binding.recycler.adapter = UserAdapter(it, choreViewModel ,object : UserAdapter.UserListener {
+            binding.recycler.adapter = UserAdapter(it ,object : UserAdapter.UserListener {
                 override fun onUserClicked(index: Int) {
                     Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_LONG).show()
                 }
@@ -82,27 +84,27 @@ class AllFamilyMembersFragment : Fragment() {
         binding.recycler.layoutManager = GridLayoutManager(requireContext(),1)
 
 
-        ItemTouchHelper(object : ItemTouchHelper.Callback() {
-
-            override fun getMovementFlags(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder
-            )= makeFlag(ItemTouchHelper.ACTION_STATE_SWIPE, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
-
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                TODO("Not yet implemented")
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                userViewModel.deleteUser((binding.recycler.adapter as UserAdapter)
-                    .userAt(viewHolder.adapterPosition))
-                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
-            }
-        }).attachToRecyclerView(binding.recycler)
+//        ItemTouchHelper(object : ItemTouchHelper.Callback() {
+//
+//            override fun getMovementFlags(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder
+//            )= makeFlag(ItemTouchHelper.ACTION_STATE_SWIPE, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+//
+//            override fun onMove(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder,
+//                target: RecyclerView.ViewHolder
+//            ): Boolean {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//                userViewModel.deleteUser((binding.recycler.adapter as UserAdapter)
+//                    .userAt(viewHolder.adapterPosition))
+//                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+//            }
+//        }).attachToRecyclerView(binding.recycler)
     }
 
     override fun onDestroyView() {

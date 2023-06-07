@@ -9,7 +9,7 @@ import com.example.archtectureproject.data.model.User
 
 class UserRepository(application: Application) {
 
-    private var userDao: UserDao?
+    private var userDao: UserDao
 
     init {
         val db  = UsersDatabase.getDatabase(application)
@@ -18,7 +18,7 @@ class UserRepository(application: Application) {
 
 //    suspend fun getUser(userId: Int) = userDao?.getUser(userId)
 
-    fun getFamily(familyId: Int) = userDao?.getFamily(familyId)
+    fun getFamily(familyId: Int) = userDao.getFamily(familyId)
 
     suspend fun addUser(user: User) {
         userDao?.addUser(user)

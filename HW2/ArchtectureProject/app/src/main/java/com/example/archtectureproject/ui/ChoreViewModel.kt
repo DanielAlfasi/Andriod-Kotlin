@@ -25,6 +25,18 @@ class ChoreViewModel(application: Application)
         _chosenChore.value = chore
     }
 
+    fun addChore(chore: Chore) {
+        viewModelScope.launch {
+            repository.addChore(chore)
+        }
+    }
+
+    fun deleteChore(chore: Chore) {
+        viewModelScope.launch {
+            repository.deleteChore(chore)
+        }
+    }
+
     fun countUserChores(userId: Int) : Int {
         var userChores = 0
         chores?.value?.let { choresList ->
@@ -49,19 +61,6 @@ class ChoreViewModel(application: Application)
             }
         }
         return totalReward
-    }
-
-
-    fun addChore(chore: Chore) {
-        viewModelScope.launch {
-            repository.addChore(chore)
-        }
-    }
-
-    fun deleteChore(chore: Chore) {
-        viewModelScope.launch {
-            repository.deleteChore(chore)
-        }
     }
 
     fun deleteAll() {
