@@ -24,9 +24,6 @@ interface UserDao {
     @Query("SELECT * from users_table where family_id = :familyId")
     fun getFamily(familyId: Int) : LiveData<List<User>>
 
-//    @Query("SELECT * from users_table WHERE id = :userId")
-//    suspend fun getUser(userId: Int) : User
-
     @Query("DELETE from users_table")
     suspend fun deleteAll()
 }

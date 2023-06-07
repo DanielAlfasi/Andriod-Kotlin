@@ -27,11 +27,10 @@ import com.example.archtectureproject.data.model.User
 class AddChoreFragment : Fragment() {
 
     private val viewModel: ChoreViewModel by activityViewModels()
-
+    private val userViewModel: UserViewModel by activityViewModels()
     private var _binding: AddChoreLayoutBinding? = null
     private val binding get() = _binding!!
     private var date: Long = 0L
-    private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var userSpinner: Spinner
     private var selectedUserId = -1
 
@@ -44,12 +43,10 @@ class AddChoreFragment : Fragment() {
 
         _binding = AddChoreLayoutBinding.inflate(inflater, container, false)
 
-        // handle date pick
         binding.pickDateBtn.setOnClickListener {
             dateBtnClicked()
         }
 
-        // handle user assigned to chore picker
         userSpinner =  binding.userPickSpinner
 
         val allUsers = userViewModel.users
@@ -67,7 +64,6 @@ class AddChoreFragment : Fragment() {
             handleUserPick(allUsers.value)
         })
 
-        // handle finish button
         binding.finishBtn.setOnClickListener {
             finishBtnClicked()
         }
@@ -77,18 +73,15 @@ class AddChoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // handle menu bar
+
         val menuHost: MenuHost = requireActivity()
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.clear() // Clear the menu first
-                // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Handle the menu selection
                 return when (menuItem.itemId) {
                     R.id.go_to_home -> {
                         findNavController().navigate(R.id.action_addChoreFragment_to_homeFragment)
@@ -101,33 +94,30 @@ class AddChoreFragment : Fragment() {
 
     }
 
-
-    // handle finish button function
     private fun finishBtnClicked() {
 
-        // handle empty fields
         if (date == 0L) {
             val builder = AlertDialog.Builder(requireContext())
 
-            builder.setTitle(getString(R.string.date_not_picked_title).toString())
-            builder.setMessage(getString(R.string.date_not_picked_desc).toString())
-            builder.setPositiveButton(getString(R.string.date_not_picked_ok).toString()) { dialog, _ ->
+            builder.setTitle(getString(R.string.date_not_picked_title))
+            builder.setMessage(getString(R.string.date_not_picked_desc))
+            builder.setPositiveButton(getString(R.string.date_not_picked_ok)) { dialog, _ ->
                 dialog.dismiss()
             }
 
             val alertDialog = builder.create()
-            alertDialog.show()
 
+            alertDialog.show()
         }
         else if (binding.choreTitle.text.isNullOrBlank() and binding.choreReward.text.isNullOrBlank()) {
-            binding.choreTitle.error = getString(R.string.field_not_null_error).toString()
-            binding.choreReward.error = getString(R.string.field_not_null_error).toString()
+            binding.choreTitle.error = getString(R.string.field_not_null_error)
+            binding.choreReward.error = getString(R.string.field_not_null_error)
         }
         else if (binding.choreTitle.text.isNullOrBlank()) {
-            binding.choreTitle.error = getString(R.string.field_not_null_error).toString()
+            binding.choreTitle.error = getString(R.string.field_not_null_error)
         }
         else if (binding.choreReward.text.isNullOrBlank()) {
-            binding.choreReward.error = getString(R.string.field_not_null_error).toString()
+            binding.choreReward.error = getString(R.string.field_not_null_error)
         }
         else {
             val chore = Chore(
@@ -145,7 +135,6 @@ class AddChoreFragment : Fragment() {
 
     }
 
-    // handle date pick button
     private fun dateBtnClicked() {
         val calendar = Calendar.getInstance()
 

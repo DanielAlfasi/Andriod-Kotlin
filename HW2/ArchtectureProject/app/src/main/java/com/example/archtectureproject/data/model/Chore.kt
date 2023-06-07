@@ -17,7 +17,6 @@ data class Chore(
     @ColumnInfo(name = "reward")
     val reward: Int,
 
-    // Change to Date type
     @ColumnInfo(name = "due_date")
     val date: Long,
 

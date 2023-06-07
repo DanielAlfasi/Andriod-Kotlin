@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ChoreAdapter(val chores:List<Chore>, private val callback: ChoreListener) : RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder>() {
+class ChoreAdapter(private val chores:List<Chore>, private val callback: ChoreListener) : RecyclerView.Adapter<ChoreAdapter.ChoreViewHolder>() {
 
     interface ChoreListener {
         fun onChoreClicked(index:Int)

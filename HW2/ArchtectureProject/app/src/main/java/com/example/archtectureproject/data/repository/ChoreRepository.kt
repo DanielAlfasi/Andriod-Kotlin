@@ -17,22 +17,22 @@ class ChoreRepository(application: Application) {
     fun getChores() = choreDao.getChores()
 
     suspend fun addChore(chore: Chore) {
-        choreDao?.addChore(chore)
+        choreDao.addChore(chore)
     }
 
     suspend fun deleteChore(chore: Chore) {
-        choreDao?.deleteChore(chore)
+        choreDao.deleteChore(chore)
     }
 
     suspend fun deleteAll() {
-        choreDao?.deleteAll()
+        choreDao.deleteAll()
     }
 
     suspend fun updateUserCharge(choreId: Int, userId: Int) {
-        choreDao?.updateUserCharge(choreId, userId)
+        choreDao.updateUserCharge(choreId, userId)
     }
 
     suspend fun updateChoreCompleted(choreId: Int, status: Boolean = true) {
-        choreDao?.updateChoreCompleted(choreId, status)
+        choreDao.updateChoreCompleted(choreId, status)
     }
 }

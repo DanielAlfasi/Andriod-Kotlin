@@ -1,5 +1,6 @@
 package com.example.archtectureproject.ui.allfamilymembers
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,10 +45,11 @@ class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserLis
             return true
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(userWithChore: UserWithChores) {
             binding.userName.text = "${userWithChore.user.firstName} ${userWithChore.user.lastName}"
-            binding.userChores.text = "Chores : ${userWithChore.choresCount}"
-            binding.userNumOfCoins.text = "Coins : ${userWithChore.totalRewards}"
+            binding.userChores.text = "${binding.root.context.getString(R.string.number_of_chores_title)} ${userWithChore.choresCount}"
+            binding.userNumOfCoins.text = "${binding.root.context.getString(R.string.reward_title)} ${userWithChore.totalRewards}"
             if (userWithChore.user.profileImg != "null") {
                 Glide.with(binding.root).load(userWithChore.user.profileImg).circleCrop()
                     .into(binding.itemImage)
@@ -58,7 +60,7 @@ class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserLis
         }
     }
 
-    fun userAt(position: Int) = users[position]
+    fun userAt(position: Int) = users[position].user
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         UserViewHolder(UserLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
