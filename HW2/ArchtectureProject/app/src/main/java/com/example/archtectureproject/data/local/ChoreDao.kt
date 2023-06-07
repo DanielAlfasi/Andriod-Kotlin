@@ -33,6 +33,9 @@ interface ChoreDao {
     @Query("UPDATE chores_table SET user_in_charge_id = :userId WHERE id = :choreId")
     suspend fun updateUserCharge(choreId: Int, userId: Int)
 
+    @Query("UPDATE chores_table SET user_in_charge_id = -1 WHERE user_in_charge_id = :userId")
+    suspend fun updateUserChargeUponUserRemoved(userId: Int)
+
     @Query("UPDATE chores_table SET status = :status WHERE id = :choreId")
     suspend fun updateChoreCompleted(choreId: Int, status: Boolean = true)
 

@@ -18,6 +18,7 @@
     <string name="complete_chore_title">Mark as completed</string>
     <string name="user_change_title">Apply change</string>
     <string name="chore_completed">Chore completed</string>
+    <string name="chore_completed_error">Cannot completed unassigned chore</string>
 
 <!--    add chore fragment-->
     <string name="pick_date_title">Pick due date</string>

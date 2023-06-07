@@ -75,7 +75,7 @@ class AllChoresFragment : Fragment() {
                 }
 
                 override fun onChoreLongClick(index: Int) {
-                    TODO("Not yet implemented")
+                    // TO do
                 }
             })
         }

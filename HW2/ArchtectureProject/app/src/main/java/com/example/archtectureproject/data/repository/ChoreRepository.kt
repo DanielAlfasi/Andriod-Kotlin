@@ -28,6 +28,11 @@ class ChoreRepository(application: Application) {
         choreDao.deleteAll()
     }
 
+    suspend fun updateUserChargeUponUserRemoved(userId: Int)
+    {
+        choreDao.updateUserChargeUponUserRemoved(userId)
+    }
+
     suspend fun updateUserCharge(choreId: Int, userId: Int) {
         choreDao.updateUserCharge(choreId, userId)
     }

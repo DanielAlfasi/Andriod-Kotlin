@@ -41,5 +41,6 @@
     <string name="add_member_finish">הוסף בן משפחה</string>
     <string name="first_name_hint">הכנס שם</string>
     <string name="last_name_hint">הכנס שם משפחה</string>
+    <string name="chore_completed_error">לא ניתן להשלים משימה לא משוייכת</string>
 
 </resources>

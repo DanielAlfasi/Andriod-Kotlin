@@ -37,12 +37,6 @@ class ChoreViewModel(application: Application)
         }
     }
 
-    fun deleteAll() {
-        viewModelScope.launch {
-            repository.deleteAll()
-        }
-    }
-
     fun updateUserCharge(choreId: Int, userId: Int) {
         viewModelScope.launch {
             repository.updateUserCharge(choreId, userId)
