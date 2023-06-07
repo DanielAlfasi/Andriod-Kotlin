@@ -86,7 +86,7 @@ class DetailedChoreFragment : Fragment() {
             val date = Date(it.date)
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val dateString = dateFormat.format(date)
-            binding.choreDueDate.text = "${getString(R.string.due_title).toString()} $dateString"
+            binding.choreDueDate.text = "${getString(R.string.due_title)} $dateString"
 
             // handle user assigned to chore
             if (it.userId == -1) {

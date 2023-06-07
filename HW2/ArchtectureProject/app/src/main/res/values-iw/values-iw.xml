@@ -25,4 +25,6 @@
     <string name="date_not_picked_desc">חייב לבחור תאריך לסיום</string>
     <string name="date_not_picked_ok">סיים</string>
     <string name="field_not_null_error">שדה זה לא יכול להיות ריק</string>
+    <string name="coins_title">נקודות :</string>
+    <string name="number_of_chores_title">מטלות :</string>
 </resources>
