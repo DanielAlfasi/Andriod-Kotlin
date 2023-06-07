@@ -29,21 +29,21 @@ class UserViewModel(application: Application)
         }
     }
 
-//    fun getUser(userId:Int) : User
-//    {
-//        // ASK ERAN
-//        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
-//        users?.value?.let { userList ->
-//            for (user in userList)
-//            {
-//                if (user.id == userId)
-//                {
-//                    userToReturn = user
-//                }
-//            }
-//        }
-//        return userToReturn
-//    }
+    fun getUser(userId:Int) : User
+    {
+        // ASK ERAN
+        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
+        users?.value?.let { userList ->
+            for (user in userList)
+            {
+                if (user.id == userId)
+                {
+                    userToReturn = user
+                }
+            }
+        }
+        return userToReturn
+    }
 
     fun getUserById(userId: Int): LiveData<User>? {
         return users?.let { users ->

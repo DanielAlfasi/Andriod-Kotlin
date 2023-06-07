@@ -147,6 +147,8 @@ class DetailedChoreFragment : Fragment() {
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
         // i have the userid in selectedUserId so request from viewmodel the details
+        var user = userViewModel.getUser(selectedUserId)
+        binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
     }
 
     private fun completeChore() {
