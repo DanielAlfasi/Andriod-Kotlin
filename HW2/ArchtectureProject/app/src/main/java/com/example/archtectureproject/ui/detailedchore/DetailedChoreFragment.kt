@@ -92,12 +92,14 @@ class DetailedChoreFragment : Fragment() {
             if (it.userId == -1) {
                 binding.assignedTo.text = getString(R.string.not_assigned)
             }
+            else {
+                // Sahar my fix was to add an observer so whenever the chore changes I request the user from the Viewmodel
+                userViewModel.getUserById(it.userId)?.observe(viewLifecycleOwner) { user ->
+                    binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
 
-            // Sahar my fix was to add an observer so whenever the chore changes I request the user from the Viewmodel
-            userViewModel.getUserById(it.userId)?.observe(viewLifecycleOwner) { user ->
-                binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
-
+                }
             }
+
 
 
 
