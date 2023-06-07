@@ -75,7 +75,11 @@ class DetailedChoreFragment : Fragment() {
 
         choreViewModel.chosenChore.observe(viewLifecycleOwner) {
             binding.choreTitle.text = it.title
-            binding.choreDescription.text = it.description
+            if (it.description == "") {
+                binding.choreDescription.visibility = View.GONE
+            } else {
+                binding.choreDescription.text = it.description
+            }
             binding.choreReward.text = "${getString(R.string.reward_title).toString()} ${it.reward.toString()}"
 
             // handle Date

@@ -12,6 +12,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.R
@@ -32,6 +33,7 @@ class AddChoreFragment : Fragment() {
     private var date: Long = 0L
     private val userViewModel: UserViewModel by activityViewModels()
     private lateinit var userSpinner: Spinner
+    private var selectedUserId = -1
 
 
     override fun onCreateView(
@@ -46,29 +48,24 @@ class AddChoreFragment : Fragment() {
         binding.pickDateBtn.setOnClickListener {
             dateBtnClicked()
         }
-//
-//        userSpinner =  binding.userPickSpinner
-//
-//        val allUsers = userViewModel.users
-//
-//        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
-//            allUsers.value
-//            val userNames = userList.map { "${it.firstName} ${it.lastName}" }
-//            val arrayAdapter = ArrayAdapter(
-//                requireContext(),
-//                android.R.layout.simple_spinner_item,
-//                userNames
-//            )
-//            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            userSpinner.adapter = arrayAdapter
-//
-//        })
-//
-//        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val selectedUser = allUsers!![position]
-//                val userPicked = selectedUser
-//            }
+
+        // handle user assigned to chore picker
+        userSpinner =  binding.userPickSpinner
+
+        val allUsers = userViewModel.users
+
+        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
+            allUsers.value
+            val userNames = userList.map { "${it.firstName} ${it.lastName}" }
+            val arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                userNames
+            )
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            userSpinner.adapter = arrayAdapter
+            handleUserPick(allUsers.value)
+        })
 
         // handle finish button
         binding.finishBtn.setOnClickListener {
@@ -100,7 +97,7 @@ class AddChoreFragment : Fragment() {
                     else -> false
                 }
             }
-        })
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
     }
 
@@ -108,6 +105,7 @@ class AddChoreFragment : Fragment() {
     // handle finish button function
     private fun finishBtnClicked() {
 
+        // handle empty fields
         if (date == 0L) {
             val builder = AlertDialog.Builder(requireContext())
 
@@ -136,7 +134,8 @@ class AddChoreFragment : Fragment() {
                 binding.choreTitle.text.toString(),
                 binding.choreDescription.text.toString(),
                 binding.choreReward.text.toString().toInt(),
-                date
+                date,
+                selectedUserId
             )
 
             viewModel.addChore(chore)
@@ -178,6 +177,20 @@ class AddChoreFragment : Fragment() {
         datePickerDialog.datePicker.minDate = calendar.timeInMillis
 
         datePickerDialog.show()
+    }
+
+    // handle user assigned to chore
+    private fun handleUserPick(userList: List<User>?) {
+        userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUser = userList!![position]
+                selectedUserId = selectedUser.id
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
     }
 
     override fun onDestroyView() {

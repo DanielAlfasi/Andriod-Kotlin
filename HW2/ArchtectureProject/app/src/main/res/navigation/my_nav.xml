@@ -16,7 +16,8 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_detailedChoreFragment_to_allChoresFragment"
             app:destination="@id/allChoresFragment"
@@ -35,21 +36,25 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeFragment_to_allChoresFragment"
             app:destination="@id/allChoresFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeFragment_to_addChoreFragment"
             app:destination="@id/addChoreFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/allFamilyMembersFragment"
@@ -89,7 +94,9 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/allChoresFragment"
@@ -129,6 +136,8 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
