@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    menu bar-->
+    <string name="home_title">בית</string>
+    <string name="all_chores_title">רשימת מטלות</string>
+    <string name="add_chore_title">הוסף מטלה</string>
+    <string name="family_title">בני משפחה</string>
+
+    <!--    all chores fragment-->
+    <string name="chore_title">שם המטלה</string>
+
+    <!--    detailed chore fragment-->
+    <string name="not_assigned">מטלה עוד לא שויכה</string>
+    <string name="spinner_chooser_title">שייך מטלה זו אל </string>
+    <string name="reward_title">נקודות:</string>
+    <string name="due_title">לביצוע עד</string>
+    <string name="complete_chore_title">סמן כהושלם</string>
+    <string name="user_change_title">בצע שינוי</string>
+    <string name="chore_completed">מטלה הושלמה</string>
+
+    <!--    add chore fragment-->
+    <string name="pick_date_title">בחר תאריך לסיום</string>
+    <string name="no_date_picked">טרם בחרת תאריך</string>
+    <string name="date_not_picked_title">שגיאה</string>
+    <string name="date_not_picked_desc">חייב לבחור תאריך לסיום</string>
+    <string name="date_not_picked_ok">סיים</string>
+    <string name="field_not_null_error">שדה זה לא יכול להיות ריק</string>
+</resources>
