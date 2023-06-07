@@ -15,7 +15,7 @@ class ChoreViewModel(application: Application)
 
     private val repository = ChoreRepository(application)
 
-    val chores : LiveData<List<Chore>>? = repository.getChores()
+    val chores : LiveData<List<Chore>> = repository.getChores()
 
     private val _chosenChore = MutableLiveData<Chore>()
     val chosenChore : LiveData<Chore> get() = _chosenChore

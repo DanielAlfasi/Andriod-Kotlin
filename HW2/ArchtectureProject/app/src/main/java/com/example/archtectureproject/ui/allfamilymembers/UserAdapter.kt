@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 
 
 class UserAdapter(val users:List<User> , private val choreViewModel: ChoreViewModel ,private val callback: UserListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-
+// Remove view models and change arg to a list that suits the adapter
     interface UserListener {
         fun onUserClicked(index:Int)
         fun onUserLongClick(index:Int)

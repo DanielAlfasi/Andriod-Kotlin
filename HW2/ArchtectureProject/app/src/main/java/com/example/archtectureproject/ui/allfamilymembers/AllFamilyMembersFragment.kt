@@ -45,7 +45,6 @@ class AllFamilyMembersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // handle menu bar
         val menuHost: MenuHost = requireActivity()
 

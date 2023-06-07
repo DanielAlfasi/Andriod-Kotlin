@@ -7,14 +7,14 @@ import com.example.archtectureproject.data.model.Chore
 
 class ChoreRepository(application: Application) {
 
-    private var choreDao: ChoreDao?
+    private var choreDao: ChoreDao
 
     init {
         val db  = ChoresDatabase.getDatabase(application)
         choreDao = db.choreDao()
     }
 
-    fun getChores() = choreDao?.getChores()
+    fun getChores() = choreDao.getChores()
 
     suspend fun addChore(chore: Chore) {
         choreDao?.addChore(chore)
