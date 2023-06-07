@@ -37,32 +37,6 @@ class ChoreViewModel(application: Application)
         }
     }
 
-    fun countUserChores(userId: Int) : Int {
-        var userChores = 0
-        chores?.value?.let { choresList ->
-            for (chore in choresList) {
-                if (chore.userId == userId) {
-                    userChores += 1
-                }
-            }
-        }
-        return userChores
-    }
-
-    fun sumUserChoresRewards(userId: Int, status : Boolean) : Int {
-        var totalReward = 0
-        chores?.value?.let { choresList ->
-            for (chore in choresList)
-            {
-                if (chore.userId == userId && chore.status)
-                {
-                    totalReward += chore.reward
-                }
-            }
-        }
-        return totalReward
-    }
-
     fun deleteAll() {
         viewModelScope.launch {
             repository.deleteAll()

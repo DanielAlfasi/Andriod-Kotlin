@@ -26,4 +26,9 @@
     <string name="date_not_picked_desc">Due date cannot be empty</string>
     <string name="date_not_picked_ok">OK</string>
     <string name="field_not_null_error">This field cannot be empty</string>
+
+    <!--    userAdapter  -->
+    <string name="coins_title">Coins :</string>
+    <string name="number_of_chores_title">Chores :</string>
+
 </resources>

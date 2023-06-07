@@ -80,7 +80,7 @@ class DetailedChoreFragment : Fragment() {
             } else {
                 binding.choreDescription.text = it.description
             }
-            binding.choreReward.text = "${getString(R.string.reward_title).toString()} ${it.reward.toString()}"
+            binding.choreReward.text = "${getString(R.string.reward_title)} ${it.reward}"
 
             // handle Date
             val date = Date(it.date)
@@ -90,11 +90,11 @@ class DetailedChoreFragment : Fragment() {
 
             // handle user assigned to chore
             if (it.userId == -1) {
-                binding.assignedTo.text = getString(R.string.not_assigned).toString()
+                binding.assignedTo.text = getString(R.string.not_assigned)
             }
             else {
                 val user = userVM.getUser(it.userId)
-                binding.assignedTo.text = "${user?.firstName ?: ""} ${user?.lastName ?: ""}"
+                binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
             }
 
 
@@ -145,7 +145,7 @@ class DetailedChoreFragment : Fragment() {
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
         val user = userViewModel.getUser(selectedUserId)
-        binding.assignedTo.text = "${user?.firstName ?: ""} ${user?.lastName ?: ""}"
+        binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
     }
 
     private fun completeChore() {

@@ -32,7 +32,7 @@ class AddUserFragment : Fragment() {
     private val binding get() = _binding!!
     private var imageUri : Uri? = null
 
-    val pickItemLauncher : ActivityResultLauncher<Array<String>> =
+    private val pickItemLauncher : ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) {
             binding.resultImage.setImageURI(it)
             requireActivity().contentResolver.takePersistableUriPermission(it!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -50,12 +50,12 @@ class AddUserFragment : Fragment() {
             val user = User(binding.userFirstname.text.toString(), binding.userLastname.text.toString(), 1, imageUri.toString())
 
             viewModel.addUser(user)
-
             findNavController().navigate(R.id.action_addUserFragment_to_allFamilyMembersFragment)
         }
         binding.imageBtn.setOnClickListener {
             pickItemLauncher.launch(arrayOf("image/*"))
         }
+
         return binding.root
     }
 

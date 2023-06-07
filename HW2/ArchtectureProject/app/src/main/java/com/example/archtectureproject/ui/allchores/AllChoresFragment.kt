@@ -18,10 +18,9 @@ import com.example.archtectureproject.databinding.AllChoresFragmentBinding
 
 class AllChoresFragment : Fragment() {
 
-    private var _binding:AllChoresFragmentBinding? = null
+    private var _binding : AllChoresFragmentBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel : ChoreViewModel by activityViewModels()
+    private val choreViewModel : ChoreViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +37,7 @@ class AllChoresFragment : Fragment() {
            findNavController().navigate(R.id.action_allChoresFragment_to_addChoreFragment)
 
         }
+
         return binding.root
     }
 
@@ -50,7 +50,6 @@ class AllChoresFragment : Fragment() {
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                //menu.clear() // Clear the menu first
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_menu,menu)
             }
@@ -67,16 +66,16 @@ class AllChoresFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        viewModel.chores?.observe(viewLifecycleOwner) {
+        choreViewModel.chores?.observe(viewLifecycleOwner) {
 
             binding.recycler.adapter = ChoreAdapter(it, object : ChoreAdapter.ChoreListener {
                 override fun onChoreClicked(index: Int) {
-                    viewModel.setChore(it[index])
+                    choreViewModel.setChore(it[index])
                     findNavController().navigate(R.id.action_allChoresFragment_to_detailedChoreFragment)
                 }
 
                 override fun onChoreLongClick(index: Int) {
-                    Toast.makeText(requireContext(),it[index].toString(),Toast.LENGTH_LONG).show()
+                    TODO("Not yet implemented")
                 }
             })
         }
@@ -99,7 +98,7 @@ class AllChoresFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.deleteChore((binding.recycler.adapter as ChoreAdapter)
+                choreViewModel.deleteChore((binding.recycler.adapter as ChoreAdapter)
                     .choreAt(viewHolder.adapterPosition))
                 binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
             }
@@ -110,6 +109,4 @@ class AllChoresFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
