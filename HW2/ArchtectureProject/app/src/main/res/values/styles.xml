@@ -9,5 +9,6 @@
         <item name="android:shadowDx">4</item>
         <item name="android:shadowDy">4</item>
         <item name="android:shadowRadius">5</item>
+        <item name="font"></item>
     </style>
 </resources>

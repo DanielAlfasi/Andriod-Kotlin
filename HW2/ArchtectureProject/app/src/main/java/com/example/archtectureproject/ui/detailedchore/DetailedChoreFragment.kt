@@ -1,6 +1,7 @@
 package com.example.archtectureproject.ui.detailedchore
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
@@ -145,14 +146,16 @@ class DetailedChoreFragment : Fragment() {
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
         val user = userViewModel.getUser(selectedUserId)
-        binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
+        binding.assignedTo.text = "${user.firstName} ${user.lastName}"
     }
 
     private fun completeChore() {
         binding.completeButton.text = getString(R.string.chore_completed)
         binding.completeButton.isEnabled = false
+        binding.completeButton.setBackgroundColor(Color.LTGRAY)
         choreViewModel.updateChoreCompleted(choreViewModel.chosenChore.value!!.id)
         binding.applyUserChange.isEnabled = false
+        binding.applyUserChange.setBackgroundColor(Color.LTGRAY)
 
     }
 
