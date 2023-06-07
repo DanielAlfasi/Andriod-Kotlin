@@ -16,7 +16,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Chore Title"
+            android:hint="@string/add_chore_enter_title"
             android:id="@+id/chore_title"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -29,7 +29,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Chore Description"
+            android:hint="@string/add_chore_desc"
             android:id="@+id/chore_description" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -43,7 +43,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter reward"
+        android:hint="@string/add_chore_reward"
         android:inputType="numberDecimal"
         android:id="@+id/chore_reward" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +56,9 @@
         android:text="@string/pick_date_title"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:backgroundTint="#0099FF">
     </Button>
 
     <TextView
@@ -90,17 +92,19 @@
         <Spinner
             android:id="@+id/userPickSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="48dp" />
 
     </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finish"
+        android:text="@string/add_chore_finish"
         android:id="@+id/finish_btn"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:backgroundTint="#0099FF"/>
 
 
 </LinearLayout>

@@ -5,14 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="30dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.detailedchore.DetailedChoreFragment"
-    android:background="@android:color/holo_blue_light">
+    android:background="@drawable/back_imng_2"
+    tools:context=".ui.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
-        android:backgroundTint="#C1E8FF">
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="#FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,7 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/user_change_title"
-                android:layout_marginTop="20dp">
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textSize="15sp"
+                android:backgroundTint="#0099FF">
 
             </Button>
 
@@ -104,7 +107,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/complete_chore_title"
-                android:layout_marginTop="20dp">
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:backgroundTint="#0099FF">
             </Button>
 
 
