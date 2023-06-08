@@ -93,15 +93,11 @@ class DetailedChoreFragment : Fragment() {
                 binding.assignedTo.text = getString(R.string.not_assigned)
             }
             else {
-                // Sahar my fix was to add an observer so whenever the chore changes I request the user from the Viewmodel
                 userViewModel.getUserById(it.userId)?.observe(viewLifecycleOwner) { user ->
                     binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
 
                 }
             }
-
-
-
 
             userViewModel.users?.observe(viewLifecycleOwner, Observer { userList ->
 
@@ -123,7 +119,9 @@ class DetailedChoreFragment : Fragment() {
             if (choreViewModel.chosenChore.value?.status!!) {
                 binding.completeButton.text = getString(R.string.chore_completed)
                 binding.completeButton.isEnabled = false
+                binding.completeButton.setBackgroundColor(Color.parseColor("#00930E"))
                 binding.applyUserChange.isEnabled = false
+                binding.applyUserChange.setBackgroundColor(Color.LTGRAY)
             }
 
             binding.completeButton.setOnClickListener {
@@ -131,7 +129,7 @@ class DetailedChoreFragment : Fragment() {
             }
         }
 
-        }
+    }
 
     private fun handleUserPick(userList: List<User>?) {
         userSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -146,21 +144,22 @@ class DetailedChoreFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
         // i have the userid in selectedUserId so request from viewmodel the details
-        var user = userViewModel.getUser(selectedUserId)
+        val user = userViewModel.getUser(selectedUserId)
         binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
     }
 
     private fun completeChore() {
         binding.completeButton.text = getString(R.string.chore_completed)
         binding.completeButton.isEnabled = false
-        binding.completeButton.setBackgroundColor(Color.LTGRAY)
+        binding.completeButton.setBackgroundColor(Color.parseColor("#00930E"))
         choreViewModel.updateChoreCompleted(choreViewModel.chosenChore.value!!.id)
         binding.applyUserChange.isEnabled = false
         binding.applyUserChange.setBackgroundColor(Color.LTGRAY)
 
     }
 
-    }
+}

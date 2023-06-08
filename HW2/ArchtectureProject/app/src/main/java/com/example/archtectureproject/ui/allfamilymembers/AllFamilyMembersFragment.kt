@@ -2,7 +2,6 @@ package com.example.archtectureproject.ui.allfamilymembers
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.archtectureproject.R
 import com.example.archtectureproject.databinding.AllFamilyMembersFragmentBinding
-import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.ui.UserAndChoreViewModel
 import com.example.archtectureproject.ui.UserViewModel
 
@@ -29,12 +27,12 @@ class AllFamilyMembersFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AllFamilyMembersFragmentBinding.inflate(inflater,container,false)
 
         binding.flotaingAction.setOnClickListener {
 
-           findNavController().navigate(R.id.action_allFamilyMembersFragment_to_addUserFragment)
+            findNavController().navigate(R.id.action_allFamilyMembersFragment_to_addUserFragment)
 
         }
         return binding.root
@@ -64,15 +62,15 @@ class AllFamilyMembersFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        userAndChoreViewModel.userWithChores?.observe(viewLifecycleOwner) {
+        userAndChoreViewModel.userWithChores.observe(viewLifecycleOwner) {
 
             binding.recycler.adapter = UserAdapter(it ,object : UserAdapter.UserListener {
                 override fun onUserClicked(index: Int) {
-                    TODO("Not yet implemented")
+                    // do nothing
                 }
 
                 override fun onUserLongClick(index: Int) {
-                    TODO("Not yet implemented")
+                    // do nothing
                 }
             })
         }
@@ -91,7 +89,7 @@ class AllFamilyMembersFragment : Fragment() {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Not yet implemented")
+                return true
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

@@ -130,7 +130,7 @@ class AddChoreFragment : Fragment() {
 
             viewModel.addChore(chore)
 
-            findNavController().navigate(R.id.action_addChoreFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_addChoreFragment_to_allChoresFragment)
         }
 
     }
