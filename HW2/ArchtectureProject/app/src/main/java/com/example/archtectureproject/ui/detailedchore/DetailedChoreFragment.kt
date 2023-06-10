@@ -156,7 +156,6 @@ class DetailedChoreFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun completeUserPick(){
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
-        // i have the userid in selectedUserId so request from view model the details
         val user = userViewModel.getUser(selectedUserId)
         binding.assignedTo.text = "${user.firstName} ${user.lastName}"
     }

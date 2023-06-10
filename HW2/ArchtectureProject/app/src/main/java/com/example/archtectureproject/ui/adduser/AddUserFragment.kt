@@ -1,6 +1,7 @@
 package com.example.archtectureproject.ui.adduser
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,6 +18,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.R
+import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.databinding.AddUserLayoutBinding
 import com.example.archtectureproject.ui.UserViewModel
@@ -44,10 +46,7 @@ class AddUserFragment : Fragment() {
         _binding = AddUserLayoutBinding.inflate(inflater,container,false)
 
         binding.finishBtn.setOnClickListener {
-            val user = User(binding.userFirstname.text.toString(), binding.userLastname.text.toString(), 1, imageUri.toString())
-
-            viewModel.addUser(user)
-            findNavController().navigate(R.id.action_addUserFragment_to_allFamilyMembersFragment)
+            finishBtnClicked()
         }
         binding.imageBtn.setOnClickListener {
             pickItemLauncher.launch(arrayOf("image/*"))
@@ -81,6 +80,27 @@ class AddUserFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    private fun finishBtnClicked() {
+
+
+        if (binding.userFirstname.text.isNullOrBlank() and binding.userLastname.text.isNullOrBlank()) {
+            binding.userFirstname.error = getString(R.string.field_not_null_error)
+            binding.userLastname.error = getString(R.string.field_not_null_error)
+        }
+        else if (binding.userFirstname.text.isNullOrBlank()) {
+            binding.userFirstname.error = getString(R.string.field_not_null_error)
+        }
+        else if (binding.userLastname.text.isNullOrBlank()) {
+            binding.userLastname.error = getString(R.string.field_not_null_error)
+        }
+        else {
+            val user = User(binding.userFirstname.text.toString(), binding.userLastname.text.toString(), 1, imageUri.toString())
+
+            viewModel.addUser(user)
+            findNavController().navigate(R.id.action_addUserFragment_to_allFamilyMembersFragment)
+        }
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
