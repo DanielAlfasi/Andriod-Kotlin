@@ -31,8 +31,7 @@ class UserViewModel(application: Application)
 
     fun getUser(userId:Int) : User
     {
-        // ASK ERAN
-        var userToReturn = User("No", "Users" , 1, "") // Ask Marco
+        var userToReturn = User("No", "Users" , 1, "")
         users.value?.let { userList ->
             for (user in userList)
             {

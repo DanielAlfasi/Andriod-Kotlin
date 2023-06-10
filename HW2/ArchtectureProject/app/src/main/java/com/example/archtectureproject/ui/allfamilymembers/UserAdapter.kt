@@ -7,21 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.archtectureproject.R
-import com.example.archtectureproject.data.model.Chore
-import com.example.archtectureproject.data.model.User
 import com.example.archtectureproject.data.model.UserWithChores
-import com.example.archtectureproject.data.repository.ChoreRepository
-import com.example.archtectureproject.data.repository.UserRepository
-import com.example.archtectureproject.databinding.ChoreLayoutBinding
 import com.example.archtectureproject.databinding.UserLayoutBinding
-import com.example.archtectureproject.ui.ChoreViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
-class UserAdapter(val users:List<UserWithChores>  ,private val callback: UserListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+class UserAdapter(private val users:List<UserWithChores>, private val callback: UserListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 // Remove view models and change arg to a list that suits the adapter
     interface UserListener {
         fun onUserClicked(index:Int)

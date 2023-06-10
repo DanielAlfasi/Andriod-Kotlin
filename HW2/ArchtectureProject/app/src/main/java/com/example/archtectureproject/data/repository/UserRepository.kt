@@ -2,9 +2,7 @@ package com.example.archtectureproject.data.repository
 
 import android.app.Application
 import com.example.archtectureproject.data.local.UserDao
-import com.example.archtectureproject.data.local.ChoresDatabase
 import com.example.archtectureproject.data.local.UsersDatabase
-import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
 
 class UserRepository(application: Application) {
