@@ -33,13 +33,15 @@
     <string name="add_chore_finish">Finish</string>
 
     <!--    userAdapter  -->
-    <string name="coins_title">Coins :</string>
-    <string name="number_of_chores_title">Chores :</string>
+    <string name="user_name_title">Name</string>
+    <string name="coins_title">Coins:</string>
+    <string name="number_of_chores_title">Chores:</string>
 
 <!--    add user fragment-->
     <string name="image_pick_title">Pick image</string>
     <string name="add_member_finish">Add family member</string>
     <string name="first_name_hint">Enter first name</string>
     <string name="last_name_hint">Enter last name</string>
+    <string name="user_logo_desc">User logo</string>
 
 </resources>

@@ -83,7 +83,8 @@
                     android:paddingEnd="5dp"
                     android:text="@string/spinner_chooser_title"
                     android:textSize="15sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    tools:ignore="RtlSymmetry" />
 
                 <Spinner
                     android:id="@+id/userSpinner"
@@ -114,7 +115,7 @@
                 android:backgroundTint="#0099FF"
                 android:text="@string/complete_chore_title"
                 android:textColor="@color/white"
-                android:textSize="15sp"></Button>
+                android:textSize="15sp" />
 
 
         </LinearLayout>

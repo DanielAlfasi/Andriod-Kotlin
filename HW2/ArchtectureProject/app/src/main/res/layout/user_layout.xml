@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/user_name_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:id="@+id/user_name"/>
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chores"
+                android:text="@string/number_of_chores_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:id="@+id/user_chores"/>
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Coins"
+                android:text="@string/coins_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:id="@+id/user_num_of_coins"/>

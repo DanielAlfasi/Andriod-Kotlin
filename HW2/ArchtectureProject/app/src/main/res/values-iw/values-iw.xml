@@ -33,6 +33,7 @@
     <string name="add_chore_finish">סיום</string>
 
     <!--    userAdapter  -->
+    <string name="user_name_title">שם</string>
     <string name="coins_title">נקודות:</string>
     <string name="number_of_chores_title">מטלות:</string>
 
@@ -42,5 +43,7 @@
     <string name="first_name_hint">הכנס שם</string>
     <string name="last_name_hint">הכנס שם משפחה</string>
     <string name="chore_completed_error">לא ניתן להשלים משימה לא משוייכת</string>
+    <string name="user_logo_desc">לוגו יוזר</string>
+
 
 </resources>

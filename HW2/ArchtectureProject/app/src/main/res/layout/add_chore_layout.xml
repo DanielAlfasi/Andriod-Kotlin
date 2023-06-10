@@ -87,7 +87,8 @@
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
         <Spinner
             android:id="@+id/userPickSpinner"
