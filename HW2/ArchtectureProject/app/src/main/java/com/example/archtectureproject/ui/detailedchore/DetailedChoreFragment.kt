@@ -15,7 +15,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.archtectureproject.R
-import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.utils.autoCleared
 import com.example.archtectureproject.databinding.DetailedChoreLayoutBinding
 import com.example.archtectureproject.ui.ChoreViewModel
@@ -36,7 +35,7 @@ class DetailedChoreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DetailedChoreLayoutBinding.inflate(layoutInflater,container,false)
 
         return binding.root
@@ -71,8 +70,6 @@ class DetailedChoreFragment : Fragment() {
 
         userSpinner = binding.userSpinner
 
-        val allUsers = userViewModel.users
-
         choreViewModel.chosenChore.observe(viewLifecycleOwner) {
             binding.choreTitle.text = it.title
             if (it.description == "") {
@@ -94,12 +91,12 @@ class DetailedChoreFragment : Fragment() {
             }
             else {
                 userViewModel.getUserById(it.userId)?.observe(viewLifecycleOwner) { user ->
-                    binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
+                    binding.assignedTo.text = "${user.firstName} ${user.lastName}"
 
                 }
             }
 
-            userViewModel.users?.observe(viewLifecycleOwner, Observer { userList ->
+            userViewModel.users.observe(viewLifecycleOwner, Observer { userList ->
 
                 val userNames = userList.map { "${it.firstName} ${it.lastName}" }
                 val arrayAdapter = ArrayAdapter(
@@ -109,9 +106,21 @@ class DetailedChoreFragment : Fragment() {
                 )
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 userSpinner.adapter = arrayAdapter
-                handleUserPick(userViewModel.users!!.value)
+                handleUserPick(userViewModel.users.value)
                 binding.applyUserChange.setOnClickListener {
                     completeUserPick()
+                }
+                if (userList.isEmpty()) {
+                    binding.applyUserChange.isEnabled = false
+                    binding.applyUserChange.setBackgroundColor(Color.LTGRAY)
+                    binding.completeButton.isEnabled = false
+                    binding.completeButton.setBackgroundColor(Color.LTGRAY)
+                }
+                else {
+                    binding.applyUserChange.isEnabled = true
+                    binding.applyUserChange.setBackgroundColor(Color.parseColor("#0099FF"))
+                    binding.completeButton.isEnabled = true
+                    binding.completeButton.setBackgroundColor(Color.parseColor("#0099FF"))
                 }
             })
 
@@ -149,7 +158,7 @@ class DetailedChoreFragment : Fragment() {
         choreViewModel.updateUserCharge(choreViewModel.chosenChore.value!!.id, selectedUserId)
         // i have the userid in selectedUserId so request from viewmodel the details
         val user = userViewModel.getUser(selectedUserId)
-        binding.assignedTo.text = "${user.firstName ?: ""} ${user.lastName ?: ""}"
+        binding.assignedTo.text = "${user.firstName} ${user.lastName}"
     }
 
     private fun completeChore() {

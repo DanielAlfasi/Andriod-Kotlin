@@ -14,7 +14,7 @@ class UserViewModel(application: Application)
     private val userRepository = UserRepository(application)
     private val choreRepository = ChoreRepository(application)
 
-    val users : LiveData<List<User>>? = userRepository.getFamily(1)
+    val users : LiveData<List<User>> = userRepository.getFamily(1)
 
     private val _chosenUser = MutableLiveData<User>()
     val chosenUser : LiveData<User> get() = _chosenUser
@@ -33,7 +33,7 @@ class UserViewModel(application: Application)
     {
         // ASK ERAN
         var userToReturn = User("No", "Users" , 1, "") // Ask Marco
-        users?.value?.let { userList ->
+        users.value?.let { userList ->
             for (user in userList)
             {
                 if (user.id == userId)
@@ -46,16 +46,12 @@ class UserViewModel(application: Application)
     }
 
     fun getUserById(userId: Int): LiveData<User>? {
-        return users?.let { users ->
+        return users.let { users ->
             Transformations.map(users) { userList ->
                 userList.firstOrNull { it.id == userId }
             }
         }
     }
-
-
-
-
 
     fun deleteUser(user: User) {
         viewModelScope.launch {

@@ -12,11 +12,11 @@ import com.example.archtectureproject.data.repository.UserRepository
 class UserAndChoreViewModel(application: Application)
     : AndroidViewModel(application){
 
-    val userRepository = UserRepository(application)
-    val choreRepository = ChoreRepository(application)
+    private val userRepository = UserRepository(application)
+    private val choreRepository = ChoreRepository(application)
 
-    val chores : LiveData<List<Chore>> = choreRepository.getChores()
-    val users : LiveData<List<User>> = userRepository.getFamily(1)
+    private val chores : LiveData<List<Chore>> = choreRepository.getChores()
+    private val users : LiveData<List<User>> = userRepository.getFamily(1)
 
     val userWithChores = MediatorLiveData<List<UserWithChores>>().apply {
         var usersData: List<User>? = null
