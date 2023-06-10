@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.archtectureproject.R
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.databinding.ChoreLayoutBinding
 import java.text.SimpleDateFormat
@@ -42,7 +43,7 @@ class ChoreAdapter(private val chores:List<Chore>, private val callback: ChoreLi
             val date = Date(chore.date)
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val dateString = dateFormat.format(date)
-            binding.choreDueDate.text = "${binding.choreDueDate.text} $dateString"
+            binding.choreDueDate.text = "${itemView.context.getString(R.string.due_title)} $dateString"
         }
     }
 

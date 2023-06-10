@@ -10,6 +10,10 @@
 
     <!--    all chores fragment-->
     <string name="chore_title">שם המטלה</string>
+    <string name="delete_dialog_title">מחיקה</string>
+    <string name="delete_dialog_message">האם אתה בטוח שברצונך למחוק?</string>
+    <string name="delete_dialog_pos">כן</string>
+    <string name="delete_dialog_neg">לא</string>
 
     <!--    detailed chore fragment-->
     <string name="not_assigned">מטלה עוד לא שויכה</string>

@@ -9,6 +9,11 @@
 
 <!--    all chores fragment-->
     <string name="chore_title">Chore title</string>
+    <string name="delete_dialog_title">Delete</string>
+    <string name="delete_dialog_message">Are you sure you want to delete?</string>
+    <string name="delete_dialog_pos">Yes</string>
+    <string name="delete_dialog_neg">No</string>
+
 
 <!--    detailed chore fragment-->
     <string name="not_assigned">Chore isn\'t assigned yet</string>

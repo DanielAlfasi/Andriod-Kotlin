@@ -1,5 +1,7 @@
 package com.example.archtectureproject.ui.allchores
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -98,9 +100,22 @@ class AllChoresFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                choreViewModel.deleteChore((binding.recycler.adapter as ChoreAdapter)
-                    .choreAt(viewHolder.adapterPosition))
-                binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+                val builder = AlertDialog.Builder(requireContext())
+
+                builder.setTitle(getString(R.string.delete_dialog_title))
+                builder.setMessage(getString(R.string.delete_dialog_message))
+                builder.setPositiveButton(getString(R.string.delete_dialog_pos)) { dialog, _ ->
+                    dialog.dismiss()
+                    choreViewModel.deleteChore((binding.recycler.adapter as ChoreAdapter)
+                        .choreAt(viewHolder.adapterPosition))
+                    binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+                }
+                builder.setNegativeButton(getString(R.string.delete_dialog_neg)) { dialog, _ ->
+                    dialog.dismiss()
+                    binding.recycler.adapter!!.notifyItemChanged(viewHolder.adapterPosition)
+                }
+                val alertDialog = builder.create()
+                alertDialog.show()
             }
         }).attachToRecyclerView(binding.recycler)
     }
