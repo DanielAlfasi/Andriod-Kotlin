@@ -27,7 +27,8 @@ class UserAndChoreViewModel(application: Application)
                 val userChoresData = usersData!!.map { user ->
                     UserWithChores(user).apply {
                         choresCount = choresData!!.count { chore -> chore.userId == user.id }
-                        totalRewards = choresData!!.filter { chore -> chore.userId == user.id && chore.status }.sumBy { it.reward }
+                        totalRewards = choresData!!.filter { chore -> chore.userId == user.id && chore.status }
+                            .sumOf { it.reward }
                     }
                 }
                 value = userChoresData

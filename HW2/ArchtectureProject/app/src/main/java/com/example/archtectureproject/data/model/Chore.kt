@@ -3,7 +3,6 @@ package com.example.archtectureproject.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(tableName = "chores_table")
 data class Chore(

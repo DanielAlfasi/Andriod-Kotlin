@@ -26,7 +26,7 @@ class AllChoresFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AllChoresFragmentBinding.inflate(inflater,container,false)
 
         arguments?.getString("title")?.let {
@@ -66,7 +66,7 @@ class AllChoresFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        choreViewModel.chores?.observe(viewLifecycleOwner) {
+        choreViewModel.chores.observe(viewLifecycleOwner) {
 
             binding.recycler.adapter = ChoreAdapter(it, object : ChoreAdapter.ChoreListener {
                 override fun onChoreClicked(index: Int) {

@@ -20,7 +20,6 @@ import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.databinding.AddChoreLayoutBinding
 import com.example.archtectureproject.ui.UserViewModel
 import java.util.*
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.archtectureproject.data.model.User
 
@@ -39,7 +38,7 @@ class AddChoreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = AddChoreLayoutBinding.inflate(inflater, container, false)
 
@@ -51,7 +50,7 @@ class AddChoreFragment : Fragment() {
 
         val allUsers = userViewModel.users
 
-        allUsers?.observe(viewLifecycleOwner, Observer { userList ->
+        allUsers.observe(viewLifecycleOwner, Observer { userList ->
             allUsers.value
             val userNames = userList.map { "${it.firstName} ${it.lastName}" }
             val arrayAdapter = ArrayAdapter(

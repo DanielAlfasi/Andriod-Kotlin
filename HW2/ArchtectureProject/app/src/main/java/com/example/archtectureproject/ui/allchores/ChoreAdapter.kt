@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.archtectureproject.R
 import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.databinding.ChoreLayoutBinding
 import java.text.SimpleDateFormat

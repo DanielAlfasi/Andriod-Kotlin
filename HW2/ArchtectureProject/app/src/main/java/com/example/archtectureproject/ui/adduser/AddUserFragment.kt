@@ -16,11 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.archtectureproject.ui.ChoreViewModel
 import com.example.archtectureproject.R
-import com.example.archtectureproject.data.model.Chore
 import com.example.archtectureproject.data.model.User
-import com.example.archtectureproject.databinding.AddChoreLayoutBinding
 import com.example.archtectureproject.databinding.AddUserLayoutBinding
 import com.example.archtectureproject.ui.UserViewModel
 
@@ -43,7 +40,7 @@ class AddUserFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AddUserLayoutBinding.inflate(inflater,container,false)
 
         binding.finishBtn.setOnClickListener {
